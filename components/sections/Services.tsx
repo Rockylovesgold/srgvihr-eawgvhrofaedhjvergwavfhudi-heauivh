@@ -701,7 +701,7 @@ function ContactTerminal() {
           WebkitTextFillColor: hovered ? "transparent" : "#FFFFFF",
           filter: hovered ? "drop-shadow(0 0 25px rgba(128,110,255,0.5))" : "none",
           letterSpacing: "-0.02em",
-        } as React.CSSProperties}
+        }}
         onMouseEnter={() => setHovered(true)}
         whileHover={{ scale: 1.04 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
