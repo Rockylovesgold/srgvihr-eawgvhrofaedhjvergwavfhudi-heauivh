@@ -687,27 +687,29 @@ function ContactTerminal() {
         ))}
       </motion.h3>
 
-      <motion.a
-        href="mailto:info@rockmountai.com"
-        className="inline-block font-heading font-bold transition-all duration-300"
-        style={{
-          fontSize: "clamp(2rem, 5vw, 3.5rem)",
-          x: springX,
-          y: springY,
-          color: hovered ? "transparent" : "#FFFFFF",
-          background: hovered ? "linear-gradient(135deg, #FFFFFF, #C0FFFF)" : "none",
-          WebkitBackgroundClip: hovered ? "text" : "unset",
-          backgroundClip: hovered ? "text" : "unset",
-          WebkitTextFillColor: hovered ? "transparent" : "#FFFFFF",
-          filter: hovered ? "drop-shadow(0 0 25px rgba(128,110,255,0.5))" : "none",
-          letterSpacing: "-0.02em",
-        }}
+      <motion.span
+        style={{ x: springX, y: springY, display: "inline-block" }}
         onMouseEnter={() => setHovered(true)}
-        whileHover={{ scale: 1.04 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
       >
-        info@rockmountai.com
-      </motion.a>
+        <motion.a
+          href="mailto:info@rockmountai.com"
+          className="inline-block font-heading font-bold transition-all duration-300"
+          style={{
+            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            color: hovered ? "transparent" : "#FFFFFF",
+            background: hovered ? "linear-gradient(135deg, #FFFFFF, #C0FFFF)" : "none",
+            WebkitBackgroundClip: hovered ? "text" : "unset",
+            backgroundClip: hovered ? "text" : "unset",
+            WebkitTextFillColor: hovered ? "transparent" : "#FFFFFF",
+            filter: hovered ? "drop-shadow(0 0 25px rgba(128,110,255,0.5))" : "none",
+            letterSpacing: "-0.02em",
+          }}
+          whileHover={{ scale: 1.04 }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        >
+          info@rockmountai.com
+        </motion.a>
+      </motion.span>
 
       <p className="mt-8 text-base" style={{ color: "#71717A" }}>
         Or schedule a call — we respond within 24 hours.
