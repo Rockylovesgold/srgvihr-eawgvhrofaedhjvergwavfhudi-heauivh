@@ -1,0 +1,1102 @@
+"use client";
+
+import { cn } from "@/lib/utils";
+import { useRef, useEffect, useCallback, useState } from "react";
+
+interface GlobeProps {
+  className?: string;
+  size?: number;
+  dotColor?: string;
+  arcColor?: string;
+  markerColor?: string;
+  autoRotateSpeed?: number;
+  connections?: { from: [number, number]; to: [number, number] }[];
+  markers?: { lat: number; lng: number; label?: string }[];
+}
+
+const DEFAULT_MARKERS = [
+  { lat: 37.78, lng: -122.42, label: "San Francisco" },
+  { lat: 51.51, lng: -0.13, label: "London" },
+  { lat: 35.68, lng: 139.69, label: "Tokyo" },
+  { lat: -33.87, lng: 151.21, label: "Sydney" },
+  { lat: 1.35, lng: 103.82, label: "Singapore" },
+  { lat: 55.76, lng: 37.62, label: "Moscow" },
+  { lat: -23.55, lng: -46.63, label: "São Paulo" },
+  { lat: 19.43, lng: -99.13, label: "Mexico City" },
+  { lat: 28.61, lng: 77.21, label: "Delhi" },
+  { lat: 36.19, lng: 44.01, label: "Erbil" },
+];
+
+const DEFAULT_CONNECTIONS: { from: [number, number]; to: [number, number] }[] =
+  [
+    { from: [37.78, -122.42], to: [51.51, -0.13] },
+    { from: [51.51, -0.13], to: [35.68, 139.69] },
+    { from: [35.68, 139.69], to: [-33.87, 151.21] },
+    { from: [37.78, -122.42], to: [1.35, 103.82] },
+    { from: [51.51, -0.13], to: [28.61, 77.21] },
+    { from: [37.78, -122.42], to: [-23.55, -46.63] },
+    { from: [1.35, 103.82], to: [-33.87, 151.21] },
+    { from: [28.61, 77.21], to: [36.19, 44.01] },
+    { from: [51.51, -0.13], to: [36.19, 44.01] },
+  ];
+
+function latLngToXYZ(
+  lat: number,
+  lng: number,
+  radius: number
+): [number, number, number] {
+  const phi = ((90 - lat) * Math.PI) / 180;
+  const theta = ((lng + 180) * Math.PI) / 180;
+  return [
+    -(radius * Math.sin(phi) * Math.cos(theta)),
+    radius * Math.cos(phi),
+    radius * Math.sin(phi) * Math.sin(theta),
+  ];
+}
+
+function rotateY(
+  x: number,
+  y: number,
+  z: number,
+  angle: number
+): [number, number, number] {
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  return [x * cos + z * sin, y, -x * sin + z * cos];
+}
+
+function rotateX(
+  x: number,
+  y: number,
+  z: number,
+  angle: number
+): [number, number, number] {
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  return [x, y * cos - z * sin, y * sin + z * cos];
+}
+
+function project(
+  x: number,
+  y: number,
+  z: number,
+  cx: number,
+  cy: number,
+  fov: number
+): [number, number, number] {
+  const scale = fov / (fov + z);
+  return [x * scale + cx, y * scale + cy, z];
+}
+
+export function Component({
+  className,
+  size = 600,
+  dotColor = "rgba(100, 180, 255, ALPHA)",
+  arcColor = "rgba(100, 180, 255, 0.5)",
+  markerColor = "rgba(100, 220, 255, 1)",
+  autoRotateSpeed = 0.002,
+  connections = DEFAULT_CONNECTIONS,
+  markers = DEFAULT_MARKERS,
+}: GlobeProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rotYRef = useRef(0.4);
+  const rotXRef = useRef(0.3);
+  const dragRef = useRef<{
+    active: boolean;
+    startX: number;
+    startY: number;
+    startRotY: number;
+    startRotX: number;
+  }>({ active: false, startX: 0, startY: 0, startRotY: 0, startRotX: 0 });
+  const animRef = useRef<number>(0);
+  const timeRef = useRef(0);
+
+  // Generate globe dots (land approximation via density sampling)
+  const dotsRef = useRef<[number, number, number][]>([]);
+
+  useEffect(() => {
+    const dots: [number, number, number][] = [];
+    const numDots = 1200;
+    // Fibonacci sphere
+    const goldenRatio = (1 + Math.sqrt(5)) / 2;
+    for (let i = 0; i < numDots; i++) {
+      const theta = (2 * Math.PI * i) / goldenRatio;
+      const phi = Math.acos(1 - (2 * (i + 0.5)) / numDots);
+      const x = Math.cos(theta) * Math.sin(phi);
+      const y = Math.cos(phi);
+      const z = Math.sin(theta) * Math.sin(phi);
+      dots.push([x, y, z]);
+    }
+    dotsRef.current = dots;
+  }, []);
+
+  const draw = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.scale(dpr, dpr);
+
+    const cx = w / 2;
+    const cy = h / 2;
+    const radius = Math.min(w, h) * 0.38;
+    const fov = 600;
+
+    // Auto rotate
+    if (!dragRef.current.active) {
+      rotYRef.current += autoRotateSpeed;
+    }
+
+    timeRef.current += 0.015;
+    const time = timeRef.current;
+
+    ctx.clearRect(0, 0, w, h);
+
+    // Outer glow
+    const glowGrad = ctx.createRadialGradient(cx, cy, radius * 0.8, cx, cy, radius * 1.5);
+    glowGrad.addColorStop(0, "rgba(60, 140, 255, 0.03)");
+    glowGrad.addColorStop(1, "rgba(60, 140, 255, 0)");
+    ctx.fillStyle = glowGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Globe outline
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(100, 180, 255, 0.06)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    const ry = rotYRef.current;
+    const rx = rotXRef.current;
+
+    // Draw dots
+    const dots = dotsRef.current;
+    for (let i = 0; i < dots.length; i++) {
+      let [x, y, z] = dots[i];
+      x *= radius;
+      y *= radius;
+      z *= radius;
+
+      [x, y, z] = rotateX(x, y, z, rx);
+      [x, y, z] = rotateY(x, y, z, ry);
+
+      if (z > 0) continue; // back-face cull
+
+      const [sx, sy] = project(x, y, z, cx, cy, fov);
+      const depthAlpha = Math.max(0.1, 1 - (z + radius) / (2 * radius));
+      const dotSize = 1 + depthAlpha * 0.8;
+
+      ctx.beginPath();
+      ctx.arc(sx, sy, dotSize, 0, Math.PI * 2);
+      ctx.fillStyle = dotColor.replace("ALPHA", depthAlpha.toFixed(2));
+      ctx.fill();
+    }
+
+    // Draw connections as arcs
+    for (const conn of connections) {
+      const [lat1, lng1] = conn.from;
+      const [lat2, lng2] = conn.to;
+
+      let [x1, y1, z1] = latLngToXYZ(lat1, lng1, radius);
+      let [x2, y2, z2] = latLngToXYZ(lat2, lng2, radius);
+
+      [x1, y1, z1] = rotateX(x1, y1, z1, rx);
+      [x1, y1, z1] = rotateY(x1, y1, z1, ry);
+      [x2, y2, z2] = rotateX(x2, y2, z2, rx);
+      [x2, y2, z2] = rotateY(x2, y2, z2, ry);
+
+      // Only draw if both points face camera
+      if (z1 > radius * 0.3 && z2 > radius * 0.3) continue;
+
+      const [sx1, sy1] = project(x1, y1, z1, cx, cy, fov);
+      const [sx2, sy2] = project(x2, y2, z2, cx, cy, fov);
+
+      // Elevated midpoint for arc
+      const midX = (x1 + x2) / 2;
+      const midY = (y1 + y2) / 2;
+      const midZ = (z1 + z2) / 2;
+      const midLen = Math.sqrt(midX * midX + midY * midY + midZ * midZ);
+      const arcHeight = radius * 1.25;
+      const elevX = (midX / midLen) * arcHeight;
+      const elevY = (midY / midLen) * arcHeight;
+      const elevZ = (midZ / midLen) * arcHeight;
+      const [scx, scy] = project(elevX, elevY, elevZ, cx, cy, fov);
+
+      ctx.beginPath();
+      ctx.moveTo(sx1, sy1);
+      ctx.quadraticCurveTo(scx, scy, sx2, sy2);
+      ctx.strokeStyle = arcColor;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // Traveling dot along arc
+      const t = (Math.sin(time * 1.2 + lat1 * 0.1) + 1) / 2;
+      const tx = (1 - t) * (1 - t) * sx1 + 2 * (1 - t) * t * scx + t * t * sx2;
+      const ty = (1 - t) * (1 - t) * sy1 + 2 * (1 - t) * t * scy + t * t * sy2;
+
+      ctx.beginPath();
+      ctx.arc(tx, ty, 2, 0, Math.PI * 2);
+      ctx.fillStyle = markerColor;
+      ctx.fill();
+    }
+
+    // Draw markers
+    for (const marker of markers) {
+      let [x, y, z] = latLngToXYZ(marker.lat, marker.lng, radius);
+      [x, y, z] = rotateX(x, y, z, rx);
+      [x, y, z] = rotateY(x, y, z, ry);
+
+      if (z > radius * 0.1) continue;
+
+      const [sx, sy] = project(x, y, z, cx, cy, fov);
+
+      // Pulse ring
+      const pulse = Math.sin(time * 2 + marker.lat) * 0.5 + 0.5;
+      ctx.beginPath();
+      ctx.arc(sx, sy, 4 + pulse * 4, 0, Math.PI * 2);
+      ctx.strokeStyle = markerColor.replace("1)", `${0.2 + pulse * 0.15})`);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(sx, sy, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = markerColor;
+      ctx.fill();
+
+      // Label
+      if (marker.label) {
+        ctx.font = "10px system-ui, sans-serif";
+        ctx.fillStyle = markerColor.replace("1)", "0.6)");
+        ctx.fillText(marker.label, sx + 8, sy + 3);
+      }
+    }
+
+    animRef.current = requestAnimationFrame(draw);
+  }, [dotColor, arcColor, markerColor, autoRotateSpeed, connections, markers]);
+
+  useEffect(() => {
+    animRef.current = requestAnimationFrame(draw);
+    return () => cancelAnimationFrame(animRef.current);
+  }, [draw]);
+
+  // Mouse drag handlers
+  const onPointerDown = useCallback(
+    (e: React.PointerEvent) => {
+      dragRef.current = {
+        active: true,
+        startX: e.clientX,
+        startY: e.clientY,
+        startRotY: rotYRef.current,
+        startRotX: rotXRef.current,
+      };
+      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    },
+    []
+  );
+
+  const onPointerMove = useCallback(
+    (e: React.PointerEvent) => {
+      if (!dragRef.current.active) return;
+      const dx = e.clientX - dragRef.current.startX;
+      const dy = e.clientY - dragRef.current.startY;
+      rotYRef.current = dragRef.current.startRotY + dx * 0.005;
+      rotXRef.current = Math.max(
+        -1,
+        Math.min(1, dragRef.current.startRotX + dy * 0.005)
+      );
+    },
+    []
+  );
+
+  const onPointerUp = useCallback(() => {
+    dragRef.current.active = false;
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={cn("w-full h-full cursor-grab active:cursor-grabbing", className)}
+      style={{ width: size, height: size }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+    />
+  );
+}
+
+
+code 1 
+
+
+
+"use client";
+
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+
+type AnimationMode = "slide" | "fade" | "blur" | "flip" | "drop";
+
+interface RotatingTextProps {
+  words: string[];
+  interval?: number;
+  mode?: AnimationMode;
+  className?: string;
+}
+
+const animations: Record<
+  AnimationMode,
+  { initial: object; animate: object; exit: object }
+> = {
+  slide: {
+    initial: { y: "100%", opacity: 0 },
+    animate: { y: "0%", opacity: 1 },
+    exit: { y: "-100%", opacity: 0 },
+  },
+  fade: {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  },
+  blur: {
+    initial: { opacity: 0, filter: "blur(12px)" },
+    animate: { opacity: 1, filter: "blur(0px)" },
+    exit: { opacity: 0, filter: "blur(12px)" },
+  },
+  flip: {
+    initial: { rotateX: 90, opacity: 0 },
+    animate: { rotateX: 0, opacity: 1 },
+    exit: { rotateX: -90, opacity: 0 },
+  },
+  drop: {
+    initial: { y: "-80%", opacity: 0, scale: 0.8 },
+    animate: { y: "0%", opacity: 1, scale: 1 },
+    exit: { y: "80%", opacity: 0, scale: 0.8 },
+  },
+};
+
+export function Component({
+  words,
+  interval = 2500,
+  mode = "slide",
+  className,
+}: RotatingTextProps) {
+  const [index, setIndex] = useState(0);
+
+  const next = useCallback(() => {
+    setIndex((i) => (i + 1) % words.length);
+  }, [words.length]);
+
+  useEffect(() => {
+    const id = setInterval(next, interval);
+    return () => clearInterval(id);
+  }, [next, interval]);
+
+  const { initial, animate, exit } = animations[mode];
+
+  return (
+    <span
+      className={cn(
+        "relative inline-flex overflow-hidden",
+        className
+      )}
+      style={{ perspective: mode === "flip" ? 600 : undefined }}
+    >
+      {/* invisible placeholder for width */}
+      <span className="invisible">
+        {words.reduce((a, b) => (a.length > b.length ? a : b), "")}
+      </span>
+
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={words[index]}
+          className="absolute inset-0 flex items-center justify-center"
+          initial={initial}
+          animate={animate}
+          exit={exit}
+          transition={{
+            duration: 0.5,
+            ease: [0.32, 0.72, 0, 1],
+          }}
+        >
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
+
+
+
+code 2
+"use client";
+
+import { memo, useCallback, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { animate } from "motion/react";
+
+interface GlowingEffectProps {
+  blur?: number;
+  inactiveZone?: number;
+  proximity?: number;
+  spread?: number;
+  variant?: "default" | "white";
+  glow?: boolean;
+  className?: string;
+  disabled?: boolean;
+  movementDuration?: number;
+  borderWidth?: number;
+}
+const GlowingEffect = memo(
+  ({
+    blur = 0,
+    inactiveZone = 0.7,
+    proximity = 0,
+    spread = 20,
+    variant = "default",
+    glow = false,
+    className,
+    movementDuration = 2,
+    borderWidth = 1,
+    disabled = true,
+  }: GlowingEffectProps) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const lastPosition = useRef({ x: 0, y: 0 });
+    const animationFrameRef = useRef<number>(0);
+
+    const handleMove = useCallback(
+      (e?: MouseEvent | { x: number; y: number }) => {
+        if (!containerRef.current) return;
+
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
+
+        animationFrameRef.current = requestAnimationFrame(() => {
+          const element = containerRef.current;
+          if (!element) return;
+
+          const { left, top, width, height } = element.getBoundingClientRect();
+          const mouseX = e?.x ?? lastPosition.current.x;
+          const mouseY = e?.y ?? lastPosition.current.y;
+
+          if (e) {
+            lastPosition.current = { x: mouseX, y: mouseY };
+          }
+
+          const center = [left + width * 0.5, top + height * 0.5];
+          const distanceFromCenter = Math.hypot(
+            mouseX - center[0],
+            mouseY - center[1]
+          );
+          const inactiveRadius = 0.5 * Math.min(width, height) * inactiveZone;
+
+          if (distanceFromCenter < inactiveRadius) {
+            element.style.setProperty("--active", "0");
+            return;
+          }
+
+          const isActive =
+            mouseX > left - proximity &&
+            mouseX < left + width + proximity &&
+            mouseY > top - proximity &&
+            mouseY < top + height + proximity;
+
+          element.style.setProperty("--active", isActive ? "1" : "0");
+
+          if (!isActive) return;
+
+          const currentAngle =
+            parseFloat(element.style.getPropertyValue("--start")) || 0;
+          let targetAngle =
+            (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) /
+              Math.PI +
+            90;
+
+          const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
+          const newAngle = currentAngle + angleDiff;
+
+          animate(currentAngle, newAngle, {
+            duration: movementDuration,
+            ease: [0.16, 1, 0.3, 1],
+            onUpdate: (value) => {
+              element.style.setProperty("--start", String(value));
+            },
+          });
+        });
+      },
+      [inactiveZone, proximity, movementDuration]
+    );
+
+    useEffect(() => {
+      if (disabled) return;
+
+      const handleScroll = () => handleMove();
+      const handlePointerMove = (e: PointerEvent) => handleMove(e);
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      document.body.addEventListener("pointermove", handlePointerMove, {
+        passive: true,
+      });
+
+      return () => {
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
+        window.removeEventListener("scroll", handleScroll);
+        document.body.removeEventListener("pointermove", handlePointerMove);
+      };
+    }, [handleMove, disabled]);
+
+    return (
+      <>
+        <div
+          className={cn(
+            "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
+            glow && "opacity-100",
+            variant === "white" && "border-white",
+            disabled && "!block"
+          )}
+        />
+        <div
+          ref={containerRef}
+          style={
+            {
+              "--blur": `${blur}px`,
+              "--spread": spread,
+              "--start": "0",
+              "--active": "0",
+              "--glowingeffect-border-width": `${borderWidth}px`,
+              "--repeating-conic-gradient-times": "5",
+              "--gradient":
+                variant === "white"
+                  ? `repeating-conic-gradient(
+                  from 236.84deg at 50% 50%,
+                  var(--black),
+                  var(--black) calc(25% / var(--repeating-conic-gradient-times))
+                )`
+                  : `radial-gradient(circle, #dd7bbb 10%, #dd7bbb00 20%),
+                radial-gradient(circle at 40% 40%, #d79f1e 5%, #d79f1e00 15%),
+                radial-gradient(circle at 60% 60%, #5a922c 10%, #5a922c00 20%), 
+                radial-gradient(circle at 40% 60%, #4c7894 10%, #4c789400 20%),
+                repeating-conic-gradient(
+                  from 236.84deg at 50% 50%,
+                  #dd7bbb 0%,
+                  #d79f1e calc(25% / var(--repeating-conic-gradient-times)),
+                  #5a922c calc(50% / var(--repeating-conic-gradient-times)), 
+                  #4c7894 calc(75% / var(--repeating-conic-gradient-times)),
+                  #dd7bbb calc(100% / var(--repeating-conic-gradient-times))
+                )`,
+            } as React.CSSProperties
+          }
+          className={cn(
+            "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",
+            glow && "opacity-100",
+            blur > 0 && "blur-[var(--blur)] ",
+            className,
+            disabled && "!hidden"
+          )}
+        >
+          <div
+            className={cn(
+              "glow",
+              "rounded-[inherit]",
+              'after:content-[""] after:rounded-[inherit] after:absolute after:inset-[calc(-1*var(--glowingeffect-border-width))]',
+              "after:[border:var(--glowingeffect-border-width)_solid_transparent]",
+              "after:[background:var(--gradient)] after:[background-attachment:fixed]",
+              "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
+              "after:[mask-clip:padding-box,border-box]",
+              "after:[mask-composite:intersect]",
+              "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]"
+            )}
+          />
+        </div>
+      </>
+    );
+  }
+);
+
+GlowingEffect.displayName = "GlowingEffect";
+
+export { GlowingEffect };
+
+
+code 3
+
+
+
+'use client'
+
+import { Suspense, lazy } from 'react'
+const Spline = lazy(() => import('@splinetool/react-spline'))
+
+interface SplineSceneProps {
+  scene: string
+  className?: string
+}
+
+export function SplineScene({ scene, className }: SplineSceneProps) {
+  return (
+    <Suspense 
+      fallback={
+        <div className="w-full h-full flex items-center justify-center">
+          <span className="loader"></span>
+        </div>
+      }
+    >
+      <Spline
+        scene={scene}
+        className={className}
+      />
+    </Suspense>
+  )
+}
+
+
+
+
+code 4
+
+"use client";
+import React, { useId, useMemo } from "react";
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import type { Container, SingleOrMultiple } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+import { cn } from "@/lib/utils";
+import { motion, useAnimation } from "framer-motion";
+
+type ParticlesProps = {
+  id?: string;
+  className?: string;
+  background?: string;
+  particleSize?: number;
+  minSize?: number;
+  maxSize?: number;
+  speed?: number;
+  particleColor?: string;
+  particleDensity?: number;
+};
+export const SparklesCore = (props: ParticlesProps) => {
+  const {
+    id,
+    className,
+    background,
+    minSize,
+    maxSize,
+    speed,
+    particleColor,
+    particleDensity,
+  } = props;
+  const [init, setInit] = useState(false);
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+  const controls = useAnimation();
+
+  const particlesLoaded = async (container?: Container) => {
+    if (container) {
+      controls.start({
+        opacity: 1,
+        transition: {
+          duration: 1,
+        },
+      });
+    }
+  };
+
+  const generatedId = useId();
+  return (
+    <motion.div animate={controls} className={cn("opacity-0", className)}>
+      {init && (
+        <Particles
+          id={id || generatedId}
+          className={cn("h-full w-full")}
+          particlesLoaded={particlesLoaded}
+          options={{
+            background: {
+              color: {
+                value: background || "#0d47a1",
+              },
+            },
+            fullScreen: {
+              enable: false,
+              zIndex: 1,
+            },
+
+            fpsLimit: 120,
+            interactivity: {
+              events: {
+                onClick: {
+                  enable: true,
+                  mode: "push",
+                },
+                onHover: {
+                  enable: false,
+                  mode: "repulse",
+                },
+                resize: true as any,
+              },
+              modes: {
+                push: {
+                  quantity: 4,
+                },
+                repulse: {
+                  distance: 200,
+                  duration: 0.4,
+                },
+              },
+            },
+            particles: {
+              bounce: {
+                horizontal: {
+                  value: 1,
+                },
+                vertical: {
+                  value: 1,
+                },
+              },
+              collisions: {
+                absorb: {
+                  speed: 2,
+                },
+                bounce: {
+                  horizontal: {
+                    value: 1,
+                  },
+                  vertical: {
+                    value: 1,
+                  },
+                },
+                enable: false,
+                maxSpeed: 50,
+                mode: "bounce",
+                overlap: {
+                  enable: true,
+                  retries: 0,
+                },
+              },
+              color: {
+                value: particleColor || "#ffffff",
+                animation: {
+                  h: {
+                    count: 0,
+                    enable: false,
+                    speed: 1,
+                    decay: 0,
+                    delay: 0,
+                    sync: true,
+                    offset: 0,
+                  },
+                  s: {
+                    count: 0,
+                    enable: false,
+                    speed: 1,
+                    decay: 0,
+                    delay: 0,
+                    sync: true,
+                    offset: 0,
+                  },
+                  l: {
+                    count: 0,
+                    enable: false,
+                    speed: 1,
+                    decay: 0,
+                    delay: 0,
+                    sync: true,
+                    offset: 0,
+                  },
+                },
+              },
+              effect: {
+                close: true,
+                fill: true,
+                options: {},
+                type: {} as SingleOrMultiple<string> | undefined,
+              },
+              groups: {},
+              move: {
+                angle: {
+                  offset: 0,
+                  value: 90,
+                },
+                attract: {
+                  distance: 200,
+                  enable: false,
+                  rotate: {
+                    x: 3000,
+                    y: 3000,
+                  },
+                },
+                center: {
+                  x: 50,
+                  y: 50,
+                  mode: "percent",
+                  radius: 0,
+                },
+                decay: 0,
+                distance: {},
+                direction: "none",
+                drift: 0,
+                enable: true,
+                gravity: {
+                  acceleration: 9.81,
+                  enable: false,
+                  inverse: false,
+                  maxSpeed: 50,
+                },
+                path: {
+                  clamp: true,
+                  delay: {
+                    value: 0,
+                  },
+                  enable: false,
+                  options: {},
+                },
+                outModes: {
+                  default: "out",
+                },
+                random: false,
+                size: false,
+                speed: {
+                  min: 0.1,
+                  max: 1,
+                },
+                spin: {
+                  acceleration: 0,
+                  enable: false,
+                },
+                straight: false,
+                trail: {
+                  enable: false,
+                  length: 10,
+                  fill: {},
+                },
+                vibrate: false,
+                warp: false,
+              },
+              number: {
+                density: {
+                  enable: true,
+                  width: 400,
+                  height: 400,
+                },
+                limit: {
+                  mode: "delete",
+                  value: 0,
+                },
+                value: particleDensity || 120,
+              },
+              opacity: {
+                value: {
+                  min: 0.1,
+                  max: 1,
+                },
+                animation: {
+                  count: 0,
+                  enable: true,
+                  speed: speed || 4,
+                  decay: 0,
+                  delay: 0,
+                  sync: false,
+                  mode: "auto",
+                  startValue: "random",
+                  destroy: "none",
+                },
+              },
+              reduceDuplicates: false,
+              shadow: {
+                blur: 0,
+                color: {
+                  value: "#000",
+                },
+                enable: false,
+                offset: {
+                  x: 0,
+                  y: 0,
+                },
+              },
+              shape: {
+                close: true,
+                fill: true,
+                options: {},
+                type: "circle",
+              },
+              size: {
+                value: {
+                  min: minSize || 1,
+                  max: maxSize || 3,
+                },
+                animation: {
+                  count: 0,
+                  enable: false,
+                  speed: 5,
+                  decay: 0,
+                  delay: 0,
+                  sync: false,
+                  mode: "auto",
+                  startValue: "random",
+                  destroy: "none",
+                },
+              },
+              stroke: {
+                width: 0,
+              },
+              zIndex: {
+                value: 0,
+                opacityRate: 1,
+                sizeRate: 1,
+                velocityRate: 1,
+              },
+              destroy: {
+                bounds: {},
+                mode: "none",
+                split: {
+                  count: 1,
+                  factor: {
+                    value: 3,
+                  },
+                  rate: {
+                    value: {
+                      min: 4,
+                      max: 9,
+                    },
+                  },
+                  sizeOffset: true,
+                },
+              },
+              roll: {
+                darken: {
+                  enable: false,
+                  value: 0,
+                },
+                enable: false,
+                enlighten: {
+                  enable: false,
+                  value: 0,
+                },
+                mode: "vertical",
+                speed: 25,
+              },
+              tilt: {
+                value: 0,
+                animation: {
+                  enable: false,
+                  speed: 0,
+                  decay: 0,
+                  sync: false,
+                },
+                direction: "clockwise",
+                enable: false,
+              },
+              twinkle: {
+                lines: {
+                  enable: false,
+                  frequency: 0.05,
+                  opacity: 1,
+                },
+                particles: {
+                  enable: false,
+                  frequency: 0.05,
+                  opacity: 1,
+                },
+              },
+              wobble: {
+                distance: 5,
+                enable: false,
+                speed: {
+                  angle: 50,
+                  move: 10,
+                },
+              },
+              life: {
+                count: 0,
+                delay: {
+                  value: 0,
+                  sync: false,
+                },
+                duration: {
+                  value: 0,
+                  sync: false,
+                },
+              },
+              rotate: {
+                value: 0,
+                animation: {
+                  enable: false,
+                  speed: 0,
+                  decay: 0,
+                  sync: false,
+                },
+                direction: "clockwise",
+                path: false,
+              },
+              orbit: {
+                animation: {
+                  count: 0,
+                  enable: false,
+                  speed: 1,
+                  decay: 0,
+                  delay: 0,
+                  sync: false,
+                },
+                enable: false,
+                opacity: 1,
+                rotation: {
+                  value: 45,
+                },
+                width: 1,
+              },
+              links: {
+                blink: false,
+                color: {
+                  value: "#fff",
+                },
+                consent: false,
+                distance: 100,
+                enable: false,
+                frequency: 1,
+                opacity: 1,
+                shadow: {
+                  blur: 5,
+                  color: {
+                    value: "#000",
+                  },
+                  enable: false,
+                },
+                triangles: {
+                  enable: false,
+                  frequency: 1,
+                },
+                width: 1,
+                warp: false,
+              },
+              repulse: {
+                value: 0,
+                enabled: false,
+                distance: 1,
+                duration: 1,
+                factor: 1,
+                speed: 1,
+              },
+            },
+            detectRetina: true,
+          }}
+        />
+      )}
+    </motion.div>
+  );
+};
+

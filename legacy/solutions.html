@@ -1,0 +1,754 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Rockmount AI Solutions — Automation systems, AI app creation, backend integration, AI audits, monitoring & governance, and enablement for enterprise teams." />
+    <title>Solutions — Rockmount AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/animations.css" />
+    <link rel="stylesheet" href="styles/pages.css" />
+</head>
+
+<body>
+  <canvas id="bg-canvas" aria-hidden="true" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>`n <div id="scroll-progress" aria-hidden="true"></div>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- HEADER (shared) -->
+    <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo" aria-label="Rockmount AI">
+                <img src="assets/logo_transparent.png" alt="Rockmount AI" width="180" height="40" style="height:40px; width:auto; object-fit:contain;">
+            </a>
+
+      <nav class="primary-nav" role="navigation" aria-label="Primary navigation">
+        <!-- Solutions mega -->
+        <div class="nav-item" data-mega>
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Solutions
+            <svg class="nav-link-caret" viewBox="0 0 10 10">
+              <polyline points="1 3 5 7 9 3" />
+            </svg>
+          </button>
+          <div class="mega-menu" role="region" aria-label="Solutions menu">
+            <div class="mega-column mega-column--grid">
+              <div class="mega-column-title mega-column-title--span">Capabilities</div>
+              <a href="solutions.html#automation" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Automation Systems</div>
+                  <div class="mega-link-desc">End-to-end workflow automation that ships.</div>
+                </div>
+              </a>
+              <a href="solutions.html#ai-apps" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M9 9h6M9 12h6M9 15h4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI App Creation</div>
+                  <div class="mega-link-desc">Internal and customer-facing AI products.</div>
+                </div>
+              </a>
+              <a href="solutions.html#integration" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Backend Integration</div>
+                  <div class="mega-link-desc">APIs, data pipelines, orchestration layers.</div>
+                </div>
+              </a>
+              <a href="solutions.html#audits" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M9 11l3 3L22 4" />
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI Audits</div>
+                  <div class="mega-link-desc">Security, privacy, bias, and reliability.</div>
+                </div>
+              </a>
+              <a href="solutions.html#monitoring" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Monitoring & Gov</div>
+                  <div class="mega-link-desc">Model observability and policy enforcement.</div>
+                </div>
+              </a>
+              <a href="solutions.html#enablement" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Enablement</div>
+                  <div class="mega-link-desc">Playbooks, training, and rollout support.</div>
+                </div>
+              </a>
+            </div>
+            <div class="mega-featured">
+              <div class="mega-column-title mega-column-title--flush">Featured Insight</div>
+              <div class="mega-featured-img">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
+                  alt="Abstract data lines" loading="lazy">
+              </div>
+              <div class="mega-featured-title">Governance in the loop</div>
+              <div class="mega-featured-desc">How to maintain audit trails without slowing down continuous deployment
+                models.</div>
+              <a href="insight-detail.html" class="link-arrow mt-auto">Read playbook <span class="arrow">→</span></a>
+            </div>
+            <div class="mega-footer">
+              <span class="mega-footer-label">Engineering-grade delivery</span>
+              <a href="solutions.html" class="link-arrow">View all solutions <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights mega -->
+        <div class="nav-item" data-mega>
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Insights
+            <svg class="nav-link-caret" viewBox="0 0 10 10">
+              <polyline points="1 3 5 7 9 3" />
+            </svg>
+          </button>
+          <div class="mega-menu" role="region" aria-label="Insights menu">
+            <div class="mega-column mega-column--grid">
+              <div class="mega-column-title mega-column-title--span">Topics</div>
+              <a href="insights.html?filter=automation" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Automation</div>
+                  <div class="mega-link-desc">Workflow design, LLM ops.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=audits" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M9 11l3 3L22 4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI Audits</div>
+                  <div class="mega-link-desc">Bias, safety, and compliance.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=governance" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Governance</div>
+                  <div class="mega-link-desc">Model risk management.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=deployment" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Deployment</div>
+                  <div class="mega-link-desc">SLAs and production best practices.</div>
+                </div>
+              </a>
+            </div>
+            <div class="mega-featured">
+              <div class="mega-column-title mega-column-title--flush">Latest Article</div>
+              <div class="mega-featured-img">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400&auto=format&fit=crop"
+                  alt="Abstract architectural structural lines" loading="lazy">
+              </div>
+              <div class="mega-featured-title">Securing Enterprise LLMs</div>
+              <div class="mega-featured-desc">A deep dive into mitigating prompt injection and exfiltration risks in
+                production.</div>
+              <a href="insight-detail.html" class="link-arrow mt-auto">Read article <span class="arrow">→</span></a>
+            </div>
+            <div class="mega-footer">
+              <span class="mega-footer-label">New insight every week</span>
+              <a href="insights.html" class="link-arrow">Browse library <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item"><a href="company.html" class="nav-link">Our Company</a></div>
+        <div class="nav-item"><a href="newsroom.html" class="nav-link">Newsroom</a></div>
+        <div class="nav-item"><a href="careers.html" class="nav-link">Careers</a></div>
+      </nav>
+            <div class="nav-utils"><button class="region-btn" aria-label="Select region">Global / EN</button><button
+                    class="nav-icon-btn" id="search-open" aria-label="Search"><svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg></button><a href="contact.html" class="btn btn-primary nav-cta">Book a Consultation</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false"
+                aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="solutions.html" class="mobile-nav-link">Solutions</a>
+            <a href="insights.html" class="mobile-nav-link">Insights</a>
+            <a href="company.html" class="mobile-nav-link">Our Company</a>
+            <a href="newsroom.html" class="mobile-nav-link">Newsroom</a>
+            <a href="careers.html" class="mobile-nav-link">Careers</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+        </div>
+        <div class="mobile-nav-ctas">
+            <a href="contact.html" class="btn btn-primary btn-xl">Book a Consultation</a>
+            <a href="solutions.html" class="btn btn-secondary btn-xl">Explore Solutions</a>
+        </div>
+    </nav>
+
+    <main id="main" class="main-content">
+
+        <div class="page-hero">
+            <div class="container">
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span
+                        class="breadcrumbs-sep" aria-hidden="true">›</span><span>Solutions</span></nav>
+                <div class="eyebrow" style="margin-top:var(--sp-7);">What we build</div>
+                <h1 data-reveal>The full AI delivery stack</h1>
+                <p data-reveal style="max-width:52ch;">Six interconnected capabilities - from the first automation to
+                    enterprise governance — built as one system, not six separate engagements.</p>
+                <div style="display:flex;gap:var(--sp-3);margin-top:var(--sp-8);flex-wrap:wrap;">
+                    <a href="#automation" class="tag">Automation</a>
+                    <a href="#ai-apps" class="tag">AI Apps</a>
+                    <a href="#integration" class="tag">Integration</a>
+                    <a href="#audits" class="tag">Audits</a>
+                    <a href="#monitoring" class="tag">Monitoring</a>
+                    <a href="#enablement" class="tag">Enablement</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- AUTOMATION SYSTEMS -->
+        <section class="section-padding" id="automation" aria-labelledby="automation-heading">
+            <div class="container">
+                <div class="solutions-detail" data-reveal>
+                    <div class="solutions-detail-sticky">
+                        <div class="eyebrow">01</div>
+                        <h2 style="font-size:var(--fs-3xl);margin-block:var(--sp-4) var(--sp-5);"
+                            id="automation-heading">Automation Systems</h2>
+                        <p class="max-w-prose">End-to-end workflow automation, from simple trigger/action to multi-agent
+                            orchestration. We
+                            design, build, test, and hand over — with full documentation and a governance layer baked
+                            in.</p>
+                        <div class="role-tags" style="margin-top:var(--sp-6);">
+                            <span class="tag active">Heads of Engineering</span>
+                            <span class="tag active">CTOs</span>
+                            <span class="tag active">Operations VPs</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top:var(--sp-6);">Start a
+                            project</a>
+                    </div>
+                    <div>
+                        <h3 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin-bottom:var(--sp-5);">
+                            What you get</h3>
+                        <ul class="outcome-list" style="margin-bottom:var(--sp-8);">
+                            <li>Workflow architecture document with failure mode analysis</li>
+                            <li>Production-ready automation code with test coverage ≥80%</li>
+                            <li>Audit trail and logging layer built into the first release</li>
+                            <li>Override and kill-switch controls for human escalation</li>
+                            <li>Post-deployment runbook with alert thresholds</li>
+                            <li>30-day hypercare and SLA commitment</li>
+                        </ul>
+                        <div class="before-after">
+                            <div class="ba-box before">
+                                <div class="ba-label">Before</div>
+                                <ul class="ba-points">
+                                    <li>Manual document review taking 4 hrs/day</li>
+                                    <li>Error rate of ~12% on data entry tasks</li>
+                                    <li>No audit trail for compliance queries</li>
+                                    <li>3-week sprint just to build one integration</li>
+                                </ul>
+                            </div>
+                            <div class="before-after-arrow" aria-hidden="true">→</div>
+                            <div class="ba-box after">
+                                <div class="ba-label">After</div>
+                                <ul class="ba-points">
+                                    <li>Automated review pipeline runs in 8 minutes</li>
+                                    <li>Error rate reduced to &lt;0.5% with validation hooks</li>
+                                    <li>Full audit trace per document, per decision</li>
+                                    <li>Reusable automation components for future workflows</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="gradient-line-h" />
+
+        <!-- AI APP CREATION -->
+        <section class="section-padding" id="ai-apps" aria-labelledby="ai-apps-heading">
+            <div class="container">
+                <div class="solutions-detail" data-reveal>
+                    <div class="solutions-detail-sticky">
+                        <div class="eyebrow">02</div>
+                        <h2 style="font-size:var(--fs-3xl);margin-block:var(--sp-4) var(--sp-5);" id="ai-apps-heading">
+                            AI App Creation</h2>
+                        <p class="max-w-prose">Custom internal tools and customer-facing AI products — from requirements
+                            to launched
+                            product. We own the full delivery cycle and hand over with complete documentation and
+                            runbooks.</p>
+                        <div class="role-tags" style="margin-top:var(--sp-6);">
+                            <span class="tag active">Product VPs</span>
+                            <span class="tag active">CTOs</span>
+                            <span class="tag active">Digital teams</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top:var(--sp-6);">Start a
+                            project</a>
+                    </div>
+                    <div>
+                        <h3 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin-bottom:var(--sp-5);">
+                            What you get</h3>
+                        <ul class="outcome-list" style="margin-bottom:var(--sp-8);">
+                            <li>Discovery and requirements scope (1–2 weeks)</li>
+                            <li>UI/UX design with accessibility-first approach (WCAG 2.2 AA)</li>
+                            <li>Production application with documented API layer</li>
+                            <li>Embedded model output validation and safety rails</li>
+                            <li>User feedback loop and monitoring dashboard</li>
+                            <li>Deployment support and handover training</li>
+                        </ul>
+                        <div class="chart-container">
+                            <div class="chart-title">Typical delivery timeline — AI App (weeks)</div>
+                            <svg class="chart-svg" viewBox="0 0 480 120"
+                                aria-label="Bar chart showing delivery phases: Discovery 2w, Design 2w, Build 6w, QA 2w, Launch 1w">
+                                <g fill="none" stroke="none">
+                                    <rect x="0" y="40" width="56" height="60" fill="var(--color-accent-dim)" rx="3" />
+                                    <rect x="66" y="50" width="56" height="50" fill="var(--color-accent-dim)" rx="3" />
+                                    <rect x="132" y="10" width="56" height="90" fill="var(--color-accent)" rx="3"
+                                        opacity="0.7" />
+                                    <rect x="198" y="50" width="56" height="50" fill="var(--color-accent-dim)" rx="3" />
+                                    <rect x="264" y="60" width="40" height="40" fill="var(--color-accent-dim)" rx="3" />
+                                    <text x="28" y="115" fill="var(--color-text-tertiary)" font-size="9"
+                                        text-anchor="middle" font-family="monospace">Discovery</text>
+                                    <text x="94" y="115" fill="var(--color-text-tertiary)" font-size="9"
+                                        text-anchor="middle" font-family="monospace">Design</text>
+                                    <text x="160" y="115" fill="var(--color-accent-light)" font-size="9"
+                                        text-anchor="middle" font-family="monospace">Build</text>
+                                    <text x="226" y="115" fill="var(--color-text-tertiary)" font-size="9"
+                                        text-anchor="middle" font-family="monospace">QA</text>
+                                    <text x="284" y="115" fill="var(--color-text-tertiary)" font-size="9"
+                                        text-anchor="middle" font-family="monospace">Launch</text>
+                                </g>
+                            </svg>
+                            <p class="chart-caption">Indicative timeline. Final scope agreed at project start. Example
+                                only.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="gradient-line-h" />
+
+        <!-- BACKEND INTEGRATION -->
+        <section class="section-padding" style="background:var(--color-charcoal);" id="integration"
+            aria-labelledby="integration-heading">
+            <div class="container">
+                <div class="solutions-detail" data-reveal>
+                    <div class="solutions-detail-sticky">
+                        <div class="eyebrow">03</div>
+                        <h2 style="font-size:var(--fs-3xl);margin-block:var(--sp-4) var(--sp-5);"
+                            id="integration-heading">Backend Integration</h2>
+                        <p class="max-w-prose">Connect AI and automation layers to your existing APIs, data pipelines,
+                            and enterprise
+                            systems — without a greenfield rewrite. We map, build, and validate the integration layer.
+                        </p>
+                        <div class="role-tags" style="margin-top:var(--sp-6);"><span class="tag active">Heads of
+                                Engineering</span><span class="tag active">Data architects</span></div>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top:var(--sp-6);">Start a
+                            project</a>
+                    </div>
+                    <div>
+                        <h3 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin-bottom:var(--sp-5);">
+                            What you get</h3>
+                        <ul class="outcome-list">
+                            <li>System architecture map with integration dependency graph</li>
+                            <li>API gateway or middleware layer (REST, GraphQL, gRPC)</li>
+                            <li>Data pipeline with schema validation and error queuing</li>
+                            <li>ETL/ELT adapters for your existing data sources</li>
+                            <li>Observability hooks (latency, throughput, error rates)</li>
+                            <li>Load testing and chaos engineering baseline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="gradient-line-h" />
+
+        <!-- AI AUDITS -->
+        <section class="section-padding" id="audits" aria-labelledby="audits-heading">
+            <div class="container">
+                <div class="solutions-detail" data-reveal>
+                    <div class="solutions-detail-sticky">
+                        <div class="eyebrow">04</div>
+                        <h2 style="font-size:var(--fs-3xl);margin-block:var(--sp-4) var(--sp-5);" id="audits-heading">AI
+                            Audits</h2>
+                        <p class="max-w-prose">Independent, evidence-based review of your existing AI systems. We cover
+                            security, privacy,
+                            bias, reliability, and explainability — and deliver a findings report with remediation
+                            priorities.</p>
+                        <div class="role-tags" style="margin-top:var(--sp-6);"><span class="tag active">Risk
+                                officers</span><span class="tag active">Compliance</span><span
+                                class="tag active">CTOs</span></div>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top:var(--sp-6);">Request an
+                            audit</a>
+                    </div>
+                    <div>
+                        <h3 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin-bottom:var(--sp-5);">
+                            Audit scope</h3>
+                        <div class="data-table" style="margin-bottom:var(--sp-6);">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Domain</th>
+                                        <th>What we assess</th>
+                                        <th>Output</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Security</td>
+                                        <td>Prompt injection, data exfiltration, supply chain</td>
+                                        <td>Vulnerability report + CVSS scores</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Privacy</td>
+                                        <td>PII handling, data retention, consent flows</td>
+                                        <td>GDPR/CCPA gap analysis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bias</td>
+                                        <td>Demographic parity, counterfactual fairness, disparate impact</td>
+                                        <td>Fairness metrics + remediation plan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reliability</td>
+                                        <td>Accuracy, robustness, edge case failure modes</td>
+                                        <td>Benchmark results + regression suite</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Explainability</td>
+                                        <td>Decision transparency, model cards, auditability</td>
+                                        <td>Explainability scorecard</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="disclosure-box">A Rockmount AI audit report is an independent technical assessment
+                            and does not constitute legal, regulatory, or compliance certification. Clients should
+                            engage qualified legal counsel for regulatory filings.</div>
+                        <h3
+                            style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin-top:var(--sp-8);margin-bottom:var(--sp-4);">
+                            Audit methodology</h3>
+                        <div data-accordion-group>
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false"
+                                    aria-controls="audit-methodology-1">
+                                    <span class="accordion-title">Phase 1: Architecture mapping & discovery</span>
+                                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                </button>
+                                <div class="accordion-panel" id="audit-methodology-1">
+                                    <div class="accordion-content">
+                                        We begin with a paper-based review of system architecture, data flow diagrams,
+                                        and existing model cards to map all third-party dependencies and internal
+                                        components.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false"
+                                    aria-controls="audit-methodology-2">
+                                    <span class="accordion-title">Phase 2: Adversarial red-teaming</span>
+                                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                </button>
+                                <div class="accordion-panel" id="audit-methodology-2">
+                                    <div class="accordion-content">
+                                        Our security researchers attempt data exfiltration, prompt injection, and model
+                                        inversion attacks in a sandboxed environment mirroring your production setup.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false"
+                                    aria-controls="audit-methodology-3">
+                                    <span class="accordion-title">Phase 3: Statistical fairness evaluation</span>
+                                    <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                </button>
+                                <div class="accordion-panel" id="audit-methodology-3">
+                                    <div class="accordion-content">
+                                        We run fairness metrics against holdout sets, measuring demographic parity and
+                                        disparate impact across protected classes to ensure outputs align with
+                                        regulatory goals.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="gradient-line-h" />
+
+        <!-- MONITORING -->
+        <section class="section-padding" style="background:var(--color-charcoal);" id="monitoring"
+            aria-labelledby="monitoring-heading">
+            <div class="container">
+                <div class="solutions-detail" data-reveal>
+                    <div class="solutions-detail-sticky">
+                        <div class="eyebrow">05</div>
+                        <h2 style="font-size:var(--fs-3xl);margin-block:var(--sp-4) var(--sp-5);"
+                            id="monitoring-heading">Monitoring & Governance</h2>
+                        <p class="max-w-prose">Continuous model observability, drift detection, policy enforcement, and
+                            governance tooling —
+                            so you know what your AI is doing in production, always.</p>
+                        <div class="role-tags" style="margin-top:var(--sp-6);"><span class="tag active">ML
+                                engineers</span><span class="tag active">Risk officers</span></div>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top:var(--sp-6);">Start
+                            monitoring</a>
+                    </div>
+                    <div>
+                        <h3 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin-bottom:var(--sp-5);">
+                            What you get</h3>
+                        <ul class="outcome-list">
+                            <li>Real-time model performance dashboard (accuracy, latency, coverage)</li>
+                            <li>Data drift and concept drift detection with configurable thresholds</li>
+                            <li>Population shift alerts across sensitive subgroups</li>
+                            <li>Policy-as-code engine for automated compliance checks</li>
+                            <li>Incident playbook with escalation runbook</li>
+                            <li>Monthly governance digest for leadership reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="gradient-line-h" />
+
+        <!-- ENABLEMENT -->
+        <section class="section-padding" id="enablement" aria-labelledby="enablement-heading">
+            <div class="container">
+                <div class="solutions-detail" data-reveal>
+                    <div class="solutions-detail-sticky">
+                        <div class="eyebrow">06</div>
+                        <h2 style="font-size:var(--fs-3xl);margin-block:var(--sp-4) var(--sp-5);"
+                            id="enablement-heading">Enablement</h2>
+                        <p class="max-w-prose">Structured playbooks, hands-on training, and rollout support — so your
+                            team can own AI
+                            delivery long-term without ongoing dependency on us.</p>
+                        <div class="role-tags" style="margin-top:var(--sp-6);"><span class="tag active">Engineering
+                                leads</span><span class="tag active">Product teams</span></div>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top:var(--sp-6);">Book
+                            enablement</a>
+                    </div>
+                    <div>
+                        <h3 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin-bottom:var(--sp-5);">
+                            Enablement tracks</h3>
+                        <div style="display:flex;flex-direction:column;gap:var(--sp-4);">
+                            <div
+                                style="padding:var(--sp-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);">
+                                <h4
+                                    style="font-size:var(--fs-base);font-weight:var(--fw-bold);margin-bottom:var(--sp-2);">
+                                    AI Delivery Fundamentals</h4>
+                                <p style="font-size:var(--fs-sm);color:var(--color-text-secondary);">A 2-day intensive
+                                    covering LLM selection, prompt engineering, evaluation frameworks, and deployment
+                                    patterns. For engineering and product teams.</p>
+                            </div>
+                            <div
+                                style="padding:var(--sp-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);">
+                                <h4
+                                    style="font-size:var(--fs-base);font-weight:var(--fw-bold);margin-bottom:var(--sp-2);">
+                                    AI Governance for Leaders</h4>
+                                <p style="font-size:var(--fs-sm);color:var(--color-text-secondary);">A half-day session
+                                    for executives and risk officers covering EU AI Act obligations, model risk
+                                    principles, and governance structure design.</p>
+                            </div>
+                            <div
+                                style="padding:var(--sp-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);">
+                                <h4
+                                    style="font-size:var(--fs-base);font-weight:var(--fw-bold);margin-bottom:var(--sp-2);">
+                                    Embedded Playbook Build</h4>
+                                <p style="font-size:var(--fs-sm);color:var(--color-text-secondary);">We work with your
+                                    team over 4 weeks to build a bespoke AI delivery playbook — scoped to your stack,
+                                    your team maturity, and your regulatory context.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section-padding" style="background:var(--color-charcoal);">
+            <div class="container" style="text-align:center;" data-reveal>
+                <div class="eyebrow" style="justify-content:center;margin-bottom:var(--sp-4);">Ready to get started?
+                </div>
+                <h2 style="font-size:var(--fs-3xl);margin-bottom:var(--sp-5);">Book a scoping consultation</h2>
+                <p style="max-width:46ch;margin-inline:auto;margin-bottom:var(--sp-8);">Tell us about your AI roadmap,
+                    an existing system, or a compliance challenge. We'll come prepared with relevant case experience.
+                </p>
+                <a href="contact.html" class="btn btn-primary btn-xl">Book a Consultation</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+    <nav aria-label="Footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="index.html" class="site-logo" aria-label="Rockmount AI">
+                <img src="assets/logo_transparent.png" alt="Rockmount AI" width="180" height="40" style="height:40px; width:auto; object-fit:contain;">
+            </a>
+                    <p class="footer-tagline">Engineering-grade AI automation.</p>
+                </div>
+                <div>
+                    <div class="footer-col-title">Solutions</div>
+                    <ul class="footer-links">
+                        <li><a href="#automation">Automation</a></li>
+                        <li><a href="#ai-apps">AI Apps</a></li>
+                        <li><a href="#integration">Integration</a></li>
+                        <li><a href="#audits">Audits</a></li>
+                        <li><a href="#monitoring">Monitoring</a></li>
+                        <li><a href="#enablement">Enablement</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Company</div>
+                    <ul class="footer-links">
+                        <li><a href="company.html">About</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                        <li><a href="newsroom.html">Newsroom</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Legal</div>
+                    <ul class="footer-links">
+                        <li><a href="legal.html#privacy">Privacy</a></li>
+                        <li><a href="legal.html#terms">Terms</a></li>
+                        <li><a href="legal.html">All legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">© 2025 Rockmount AI Ltd. Audit reports are technical assessments only and do
+                    not constitute regulatory certification.</div>
+            </div>
+        </div>
+    </nav>
+
+    </footer>
+
+    <div class="modal-backdrop" id="modal-search" role="dialog" aria-modal="true" aria-label="Search"
+        aria-hidden="true">
+        <div class="modal search-dialog">
+            <div class="modal-header">
+                <div class="modal-title">Search</div><button class="modal-close" data-modal-close
+                    aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2" fill="none">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+            <div class="search-input-wrap"><svg class="search-icon-abs" viewBox="0 0 24 24" width="18" height="18"
+                    stroke="currentColor" stroke-width="1.5" fill="none">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg><input type="search" id="search-field" class="search-field" placeholder="Search…"
+                    aria-label="Search" /></div>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="modal-region" role="dialog" aria-modal="true" aria-label="Select region"
+        aria-hidden="true">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Select region</div><button class="modal-close" data-modal-close
+                    aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2" fill="none">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+            <div class="modal-body" style="display:flex;flex-direction:column;gap:var(--sp-2);"><button
+                    class="btn btn-secondary">🌐 Global</button><button class="btn btn-secondary">🇬🇧
+                    UK</button><button class="btn btn-secondary">🇺🇸 US</button></div>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="modal-external" role="dialog" aria-modal="true" aria-label="Leaving Rockmount AI"
+        aria-hidden="true">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Leaving Rockmount AI</div><button class="modal-close" data-modal-close
+                    aria-label="Cancel"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2" fill="none">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:var(--fs-sm);color:var(--color-text-secondary);">You're about to leave
+                    rockmountai.com.</p>
+            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>Go back</button><button
+                    class="btn btn-primary" id="external-confirm">Continue →</button></div>
+        </div>
+    </div>
+    <div class="cookie-banner" role="complementary" aria-label="Cookie consent">
+        <p>We use cookies. <a href="legal.html#cookies" class="link-underline">Cookie Notice</a>.</p>
+        <div class="cookie-actions"><button class="btn btn-secondary btn-sm" data-cookie-manage>Manage</button><button
+                class="btn btn-primary btn-sm" data-cookie-accept>Accept all</button></div>
+    </div>
+
+    <script src="js/nav.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        (function () {
+            var bar = document.getElementById('scroll-progress');
+            if (!bar) return;
+            var ticking = false;
+            function update() {
+                var scrollTop = window.scrollY || document.documentElement.scrollTop;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0).toFixed(2) + '%';
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { requestAnimationFrame(update); ticking = true; }
+            }, { passive: true });
+        })();
+    </script>
+  <script src="js/bg-canvas.js" defer></script>
+</body>
+
+</html>

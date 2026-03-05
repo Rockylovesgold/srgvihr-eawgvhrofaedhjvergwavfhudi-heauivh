@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Rockmount AI — Engineering-grade AI automation with audit-grade governance. Build, ship, and govern AI systems with confidence." />
+  <meta property="og:title" content="Rockmount AI — Automation you can ship. Governance you can prove." />
+  <meta property="og:description"
+    content="AI automation systems, custom AI app creation, backend integration, and AI audits for enterprise teams." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rockmountai.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rockmount AI" />
+  <meta name="twitter:description" content="Engineering-grade AI automation with audit-grade governance." />
+  <title>Rockmount AI — Automation you can ship. Governance you can prove.</title>
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Rockmount AI","url":"https://rockmountai.com","description":"Engineering-grade AI automation with audit-grade governance."}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/nav.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/pages.css" />
+</head>
+
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"
+    style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo" aria-label="Rockmount AI">
+        <img src="assets/logo_transparent.png" alt="Rockmount AI" width="180" height="40"
+          style="height:40px; width:auto; object-fit:contain;">
+      </a>
+
+      <nav class="primary-nav" role="navigation" aria-label="Primary navigation">
+        <!-- Solutions mega -->
+        <div class="nav-item" data-mega>
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Solutions
+            <svg class="nav-link-caret" viewBox="0 0 10 10">
+              <polyline points="1 3 5 7 9 3" />
+            </svg>
+          </button>
+          <div class="mega-menu" role="region" aria-label="Solutions menu">
+            <div class="mega-column mega-column--grid">
+              <div class="mega-column-title mega-column-title--span">Capabilities</div>
+              <a href="solutions.html#automation" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Automation Systems</div>
+                  <div class="mega-link-desc">End-to-end workflow automation that ships.</div>
+                </div>
+              </a>
+              <a href="solutions.html#ai-apps" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M9 9h6M9 12h6M9 15h4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI App Creation</div>
+                  <div class="mega-link-desc">Internal and customer-facing AI products.</div>
+                </div>
+              </a>
+              <a href="solutions.html#integration" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Backend Integration</div>
+                  <div class="mega-link-desc">APIs, data pipelines, orchestration layers.</div>
+                </div>
+              </a>
+              <a href="solutions.html#audits" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M9 11l3 3L22 4" />
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI Audits</div>
+                  <div class="mega-link-desc">Security, privacy, bias, and reliability.</div>
+                </div>
+              </a>
+              <a href="solutions.html#monitoring" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Monitoring & Gov</div>
+                  <div class="mega-link-desc">Model observability and policy enforcement.</div>
+                </div>
+              </a>
+              <a href="solutions.html#enablement" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Enablement</div>
+                  <div class="mega-link-desc">Playbooks, training, and rollout support.</div>
+                </div>
+              </a>
+            </div>
+            <div class="mega-featured">
+              <div class="mega-column-title mega-column-title--flush">Featured Insight</div>
+              <div class="mega-featured-img">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
+                  alt="Abstract data lines" loading="lazy">
+              </div>
+              <div class="mega-featured-title">Governance in the loop</div>
+              <div class="mega-featured-desc">How to maintain audit trails without slowing down continuous deployment
+                models.</div>
+              <a href="insight-detail.html" class="link-arrow mt-auto">Read playbook <span class="arrow">→</span></a>
+            </div>
+            <div class="mega-footer">
+              <span class="mega-footer-label">Engineering-grade delivery</span>
+              <a href="solutions.html" class="link-arrow">View all solutions <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights mega -->
+        <div class="nav-item" data-mega>
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Insights
+            <svg class="nav-link-caret" viewBox="0 0 10 10">
+              <polyline points="1 3 5 7 9 3" />
+            </svg>
+          </button>
+          <div class="mega-menu" role="region" aria-label="Insights menu">
+            <div class="mega-column mega-column--grid">
+              <div class="mega-column-title mega-column-title--span">Topics</div>
+              <a href="insights.html?filter=automation" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Automation</div>
+                  <div class="mega-link-desc">Workflow design, LLM ops.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=audits" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M9 11l3 3L22 4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI Audits</div>
+                  <div class="mega-link-desc">Bias, safety, and compliance.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=governance" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Governance</div>
+                  <div class="mega-link-desc">Model risk management.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=deployment" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Deployment</div>
+                  <div class="mega-link-desc">SLAs and production best practices.</div>
+                </div>
+              </a>
+            </div>
+            <div class="mega-featured">
+              <div class="mega-column-title mega-column-title--flush">Latest Article</div>
+              <div class="mega-featured-img">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400&auto=format&fit=crop"
+                  alt="Abstract architectural structural lines" loading="lazy">
+              </div>
+              <div class="mega-featured-title">Securing Enterprise LLMs</div>
+              <div class="mega-featured-desc">A deep dive into mitigating prompt injection and exfiltration risks in
+                production.</div>
+              <a href="insight-detail.html" class="link-arrow mt-auto">Read article <span class="arrow">→</span></a>
+            </div>
+            <div class="mega-footer">
+              <span class="mega-footer-label">New insight every week</span>
+              <a href="insights.html" class="link-arrow">Browse library <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item"><a href="company.html" class="nav-link">Our Company</a></div>
+        <div class="nav-item"><a href="newsroom.html" class="nav-link">Newsroom</a></div>
+        <div class="nav-item"><a href="careers.html" class="nav-link">Careers</a></div>
+      </nav>
+
+      <div class="nav-utils">
+        <button class="region-btn" aria-label="Select region">Global / EN</button>
+        <button class="nav-icon-btn" id="search-open" aria-label="Search (Ctrl+K)">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+        <a href="contact.html" class="btn btn-primary nav-cta">Book a Consultation</a>
+      </div>
+
+      <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="solutions.html" class="mobile-nav-link">Solutions</a>
+      <a href="insights.html" class="mobile-nav-link">Insights</a>
+      <a href="company.html" class="mobile-nav-link">Our Company</a>
+      <a href="newsroom.html" class="mobile-nav-link">Newsroom</a>
+      <a href="careers.html" class="mobile-nav-link">Careers</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    <div class="mobile-nav-ctas">
+      <a href="contact.html" class="btn btn-primary btn-xl">Book a Consultation</a>
+      <a href="solutions.html" class="btn btn-secondary btn-xl">Explore Solutions</a>
+    </div>
+  </nav>
+
+  <main id="main" class="main-content">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-bg-grid" aria-hidden="true"></div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <canvas id="globe-canvas" width="560" height="560"></canvas>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="eyebrow">AI Automation · Governance · Delivery</div>
+        </div>
+
+        <h1 class="hero-headline">
+          Automation you can ship.<br />
+          <span class="accent-line">
+            <span data-rotating-text
+              data-words='["Governance you can prove.","Audit trails that hold.","Systems that scale.","AI you can trust."]'
+              data-interval="3400">Governance you can prove.</span>
+          </span>
+        </h1>
+
+        <p class="hero-sub">
+          Rockmount AI partners with engineering and product teams to build, integrate, and govern AI systems — from
+          first automation to enterprise-scale deployment.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="contact.html" class="btn btn-primary btn-xl">Book a Consultation</a>
+          <a href="solutions.html" class="btn btn-secondary btn-xl">Explore Solutions <span class="arrow">→</span></a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 1l1.5 5H15l-4.5 3.5 1.5 5L8 11 3 14.5l1.5-5L0 6h5.5L8 1z" />
+            </svg>
+            SOC2-ready workflows
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 1.5L2 4v6c0 3.5 3 5.5 6 7 3-1.5 6-3.5 6-7V4L8 1.5z" />
+            </svg>
+            AI audit playbooks
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="8" r="6" />
+              <polyline points="8 4 8 8 10 10" />
+            </svg>
+            Deployment SLAs
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="8" r="7" />
+              <path d="M2 8h12M8 2a10 10 0 010 12M8 2a10 10 0 000 12" />
+            </svg>
+            UK-wide delivery
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THEMES -->
+    <section class="section-padding" style="background:var(--color-charcoal);" aria-labelledby="themes-heading">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="eyebrow">Why teams choose us</div>
+          <h2 class="section-title" id="themes-heading">Six measurable advantages</h2>
+          <p class="section-subtitle">Purpose-built for engineering and product organisations that demand auditable
+            outcomes, not pitch decks.</p>
+        </div>
+        <div class="themes-grid" data-stagger>
+          <div class="theme-tile">
+            <div class="theme-num" aria-hidden="true">01</div>
+            <h3 class="theme-title">Ship faster</h3>
+            <p class="theme-desc">Reduce cycle time from idea to deployed AI feature. Our delivery blueprints cut
+              average sprint overhead by 40%.</p>
+          </div>
+          <div class="theme-tile">
+            <div class="theme-num" aria-hidden="true">02</div>
+            <h3 class="theme-title">Reduce risk</h3>
+            <p class="theme-desc">Every engagement includes a governance layer — bias checks, security review, and
+              failure mode documentation before you go live.</p>
+          </div>
+          <div class="theme-tile">
+            <div class="theme-num" aria-hidden="true">03</div>
+            <h3 class="theme-title">Make AI observable</h3>
+            <p class="theme-desc">Real-time model monitoring, drift detection, and alert pipelines. Know what your
+              models are doing in production — always.</p>
+          </div>
+          <div class="theme-tile">
+            <div class="theme-num" aria-hidden="true">04</div>
+            <h3 class="theme-title">Integrate legacy systems</h3>
+            <p class="theme-desc">AI shouldn't require a greenfield rewrite. We connect LLMs and automation layers to
+              your existing stack — APIs, databases, ERPs.</p>
+          </div>
+          <div class="theme-tile">
+            <div class="theme-num" aria-hidden="true">05</div>
+            <h3 class="theme-title">Automate ops</h3>
+            <p class="theme-desc">Document processing, decision routing, approval chains, and reporting — freed from
+              manual overhead and running 24/7.</p>
+          </div>
+          <div class="theme-tile">
+            <div class="theme-num" aria-hidden="true">06</div>
+            <h3 class="theme-title">Prove compliance</h3>
+            <p class="theme-desc">Audit-ready outputs by default. Full traceability, explainable decisions, and
+              policy-aligned model cards for every system we build.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS SNAPSHOT -->
+    <section class="section-padding" aria-labelledby="solutions-heading">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="eyebrow">Our offerings</div>
+          <h2 class="section-title" id="solutions-heading">Solutions across the full AI stack</h2>
+          <p class="section-subtitle">From first workflow to enterprise governance platform — we cover the complete
+            delivery lifecycle.</p>
+        </div>
+        <div class="solutions-grid" data-stagger>
+          <div class="card-offering">
+            <div class="offering-icon"><svg viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg></div>
+            <div class="offering-title">Automation Systems</div>
+            <p class="offering-promise">Design and deploy end-to-end workflow automation — from simple trigger/action to
+              multi-agent orchestration.</p>
+            <a href="solutions.html#automation" class="offering-link">Learn more <span class="arrow">→</span></a>
+          </div>
+          <div class="card-offering">
+            <div class="offering-icon"><svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M9 8h6M9 12h6M9 16h4" />
+              </svg></div>
+            <div class="offering-title">AI App Creation</div>
+            <p class="offering-promise">Custom internal tools and customer-facing AI products — built to your spec,
+              shipped on time.</p>
+            <a href="solutions.html#ai-apps" class="offering-link">Learn more <span class="arrow">→</span></a>
+          </div>
+          <div class="card-offering">
+            <div class="offering-icon"><svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8" />
+              </svg></div>
+            <div class="offering-title">Backend Integration</div>
+            <p class="offering-promise">Connect AI to your APIs, data pipelines, and enterprise systems without
+              rewriting your architecture.</p>
+            <a href="solutions.html#integration" class="offering-link">Learn more <span class="arrow">→</span></a>
+          </div>
+          <div class="card-offering">
+            <div class="offering-icon"><svg viewBox="0 0 24 24">
+                <path d="M9 11l3 3L22 4" />
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+              </svg></div>
+            <div class="offering-title">AI Audits</div>
+            <p class="offering-promise">Independent audit of existing AI systems — security, privacy, bias, reliability,
+              and explainability.</p>
+            <a href="solutions.html#audits" class="offering-link">Learn more <span class="arrow">→</span></a>
+          </div>
+          <div class="card-offering">
+            <div class="offering-icon"><svg viewBox="0 0 24 24">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg></div>
+            <div class="offering-title">Monitoring & Governance</div>
+            <p class="offering-promise">Model observability, drift detection, policy enforcement, and governance tooling
+              — in production, continuously.</p>
+            <a href="solutions.html#monitoring" class="offering-link">Learn more <span class="arrow">→</span></a>
+          </div>
+          <div class="card-offering">
+            <div class="offering-icon"><svg viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+              </svg></div>
+            <div class="offering-title">Enablement</div>
+            <p class="offering-promise">Structured playbooks, hands-on training, and rollout support so your team owns
+              AI delivery long-term.</p>
+            <a href="solutions.html#enablement" class="offering-link">Learn more <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED INSIGHTS -->
+    <section class="section-padding" style="background:var(--color-charcoal);" aria-labelledby="insights-heading">
+      <div class="container">
+        <div class="section-header flex-between" style="max-width:100%;flex-direction:row;align-items:flex-end;"
+          data-reveal>
+          <div>
+            <div class="eyebrow">Research & Perspectives</div>
+            <h2 class="section-title" id="insights-heading">Featured insights</h2>
+          </div>
+          <a href="insights.html" class="btn btn-secondary">View all insights</a>
+        </div>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="automation">Automation</button>
+          <button class="filter-btn" data-filter="audits">Audits</button>
+          <button class="filter-btn" data-filter="governance">Governance</button>
+          <button class="filter-btn" data-filter="deployment">Deployment</button>
+        </div>
+        <div class="insights-grid" data-filter-grid data-stagger>
+          <article class="card card-insight" data-category="governance audits">
+            <div class="card-img"
+              style="background:linear-gradient(135deg,#0a1524,#0f2a3a);display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(34,184,212,0.4)"
+                stroke-width="1">
+                <path d="M9 11l3 3L22 4" />
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span class="tag">Governance</span><span class="card-read-time">9 min read</span>
+              </div>
+              <h3 class="card-title">The Model Risk Playbook: What AI Teams Can Borrow from Financial Regulation</h3>
+              <p class="card-dek">SR 11-7 wasn't written for LLMs — but its principles apply. A practical framework for
+                engineering-grade AI governance.</p>
+              <a href="insight-detail.html" class="btn btn-tertiary mt-auto">Read more <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="card card-insight" data-category="automation">
+            <div class="card-img"
+              style="background:linear-gradient(135deg,#070d1a,#111e30);display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(34,184,212,0.4)"
+                stroke-width="1">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span class="tag">Automation</span><span class="card-read-time">6 min read</span>
+              </div>
+              <h3 class="card-title">Agentic Systems in Production: Five Failure Modes and How to Prevent Them</h3>
+              <p class="card-dek">Multi-agent orchestration fails in predictable ways. Here's the mitigation playbook
+                before you ship.</p>
+              <a href="insight-detail.html" class="btn btn-tertiary mt-auto">Read more <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="card card-insight" data-category="audits">
+            <div class="card-img"
+              style="background:linear-gradient(135deg,#0a120a,#111e14);display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(34,184,212,0.4)"
+                stroke-width="1">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span class="tag">Audits</span><span class="card-read-time">7 min read</span></div>
+              <h3 class="card-title">What a Bias Audit Actually Looks Like: A Behind-the-Scenes Walkthrough</h3>
+              <p class="card-dek">We open-source our audit methodology. Demographic parity, counterfactual fairness, and
+                what to do when metrics conflict.</p>
+              <a href="insight-detail.html" class="btn btn-tertiary mt-auto">Read more <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="card card-insight" data-category="deployment governance">
+            <div class="card-img"
+              style="background:linear-gradient(135deg,#12080a,#200d12);display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(34,184,212,0.4)"
+                stroke-width="1">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span class="tag">Deployment</span><span class="card-read-time">5 min read</span>
+              </div>
+              <h3 class="card-title">Model Drift in the Wild: Detection Strategies That Actually Work</h3>
+              <p class="card-dek">Data drift, concept drift, and population shift — a monitoring architecture that
+                catches all three before users notice.</p>
+              <a href="insight-detail.html" class="btn btn-tertiary mt-auto">Read more <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="card card-insight" data-category="automation">
+            <div class="card-img"
+              style="background:linear-gradient(135deg,#080712,#100e1e);display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(34,184,212,0.4)"
+                stroke-width="1">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span class="tag">Automation</span><span class="card-read-time">8 min read</span>
+              </div>
+              <h3 class="card-title">LLM-Powered Internal Tools: Build vs Buy — The 2025 Decision Framework</h3>
+              <p class="card-dek">Total cost of ownership, customisation requirements, and the hidden overhead of
+                managed solutions. A structured decision matrix.</p>
+              <a href="insight-detail.html" class="btn btn-tertiary mt-auto">Read more <span class="arrow">→</span></a>
+            </div>
+          </article>
+          <article class="card card-insight" data-category="governance">
+            <div class="card-img"
+              style="background:linear-gradient(135deg,#0a1a0a,#12281a);display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(34,184,212,0.4)"
+                stroke-width="1">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span class="tag">Governance</span><span class="card-read-time">11 min read</span>
+              </div>
+              <h3 class="card-title">EU AI Act: What Engineering Leaders Need to Prepare for Right Now</h3>
+              <p class="card-dek">A plain-English breakdown of high-risk AI obligations, prohibited practices, and the
+                technical documentation requirements.</p>
+              <a href="insight-detail.html" class="btn btn-tertiary mt-auto">Read more <span class="arrow">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL MODULE -->
+    <section class="section-padding" aria-label="Leadership perspective">
+      <div class="container">
+        <div class="editorial-module" data-reveal>
+          <div class="editorial-visual" aria-hidden="true">
+            <div
+              style="width:180px;height:180px;border-radius:50%;background:rgba(15,116,144,0.15);border:1px solid rgba(15,116,144,0.3);display:flex;align-items:center;justify-content:center;">
+              <div style="font-size:3rem;font-weight:800;color:rgba(34,184,212,0.25);font-family:var(--font-mono);">ML
+              </div>
+            </div>
+          </div>
+          <div class="editorial-text">
+            <blockquote>The question isn't whether your organisation will use AI. It's whether you'll be able to
+              explain, audit, and defend what it's doing six months after you ship it.</blockquote>
+            <div class="editorial-author">
+              <div class="author-avatar" aria-hidden="true">ML</div>
+              <div>
+                <div class="author-name">Margaret Lin</div>
+                <div class="author-title">Chief AI Officer, Rockmount AI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="section-padding" style="background:var(--color-charcoal);" aria-labelledby="news-heading">
+      <div class="container">
+        <div class="news-section">
+          <div>
+            <div class="section-header" data-reveal>
+              <div class="eyebrow">In the news</div>
+              <h2 class="section-title" id="news-heading">Latest from Rockmount AI</h2>
+            </div>
+            <div>
+              <div class="card-news">
+                <div class="news-date">02 Jun 2025</div>
+                <div>
+                  <div class="news-title">Rockmount AI Closes $28M Series A to Accelerate Enterprise AI Audit Platform
+                  </div>
+                  <a href="newsroom.html" class="btn btn-tertiary text-xs">Full release <span class="arrow">→</span></a>
+                </div>
+              </div>
+              <div class="card-news">
+                <div class="news-date">14 May 2025</div>
+                <div>
+                  <div class="news-title">Rockmount AI Named "AI Governance Pioneer" by Enterprise Tech 50</div>
+                  <a href="newsroom.html" class="btn btn-tertiary text-xs">Full release <span class="arrow">→</span></a>
+                </div>
+              </div>
+              <div class="card-news">
+                <div class="news-date">28 Mar 2025</div>
+                <div>
+                  <div class="news-title">Partnership with ISO/IEC JTC 1 Working Group on AI Trustworthiness</div>
+                  <a href="newsroom.html" class="btn btn-tertiary text-xs">Full release <span class="arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-reveal="right">
+            <div
+              style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--sp-6);margin-bottom:var(--sp-4);">
+              <div
+                style="font-size:var(--fs-xs);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:var(--ls-wider);color:var(--color-text-tertiary);margin-bottom:var(--sp-5);">
+                By the numbers</div>
+              <div style="display:flex;flex-direction:column;gap:var(--sp-6);">
+                <div class="trust-metric"><span class="trust-number" data-count="120+">120+</span><span
+                    class="trust-label">AI systems audited</span></div>
+                <div class="trust-metric"><span class="trust-number" data-count="98">98</span><span
+                    class="trust-label">% client renewal rate</span></div>
+                <div class="trust-metric"><span class="trust-number" data-count="34">34</span><span
+                    class="trust-label">enterprise deployments</span></div>
+                <div class="trust-metric"><span class="trust-number" data-count="6">6</span><span
+                    class="trust-label">global offices</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE -->
+    <section class="section-padding" aria-label="Newsletter signup">
+      <div class="container">
+        <div class="subscribe-bar" data-reveal>
+          <div class="eyebrow" style="justify-content:center;">Weekly intelligence</div>
+          <h2 style="font-size:var(--fs-2xl);margin-top:var(--sp-3);margin-bottom:var(--sp-3);">Stay current on AI
+            governance</h2>
+          <p style="color:var(--color-text-secondary);font-size:var(--fs-sm);max-width:44ch;margin-inline:auto;">
+            Research, regulatory updates, and practitioner notes — for engineering and product leaders. No noise.</p>
+          <form class="subscribe-form" aria-label="Subscribe to newsletter">
+            <label for="subscribe-email" class="visually-hidden">Professional email address</label>
+            <input type="email" id="subscribe-email" class="form-input" placeholder="name@company.com"
+              autocomplete="email" required />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+          <p style="font-size:var(--fs-xs);color:var(--color-text-tertiary);margin-top:var(--sp-4);">Unsubscribe any
+            time. No third-party data sharing. See our <a href="legal.html#privacy" class="link-underline">Privacy
+              Policy</a>.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <nav aria-label="Footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="site-logo" aria-label="Rockmount AI">
+              <img src="assets/logo_transparent.png" alt="Rockmount AI" width="180" height="40"
+                style="height:40px; width:auto; object-fit:contain;">
+            </a>
+            <p class="footer-tagline">Engineering-grade AI automation with audit-grade governance.</p>
+            <div style="display:flex;gap:var(--sp-3);margin-top:var(--sp-2);">
+              <a href="https://linkedin.com" class="nav-icon-btn" aria-label="LinkedIn" rel="noopener">
+                <svg viewBox="0 0 24 24">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <a href="https://twitter.com" class="nav-icon-btn" aria-label="X / Twitter" rel="noopener">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">Solutions</div>
+            <ul class="footer-links">
+              <li><a href="solutions.html#automation">Automation Systems</a></li>
+              <li><a href="solutions.html#ai-apps">AI App Creation</a></li>
+              <li><a href="solutions.html#integration">Backend Integration</a></li>
+              <li><a href="solutions.html#audits">AI Audits</a></li>
+              <li><a href="solutions.html#monitoring">Monitoring & Governance</a></li>
+              <li><a href="solutions.html#enablement">Enablement</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Company</div>
+            <ul class="footer-links">
+              <li><a href="company.html">About Us</a></li>
+              <li><a href="company.html#principles">Principles</a></li>
+              <li><a href="company.html#leadership">Leadership</a></li>
+              <li><a href="company.html#locations">Locations</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Resources</div>
+            <ul class="footer-links">
+              <li><a href="insights.html">Insights</a></li>
+              <li><a href="newsroom.html">Newsroom</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Legal</div>
+            <ul class="footer-links">
+              <li><a href="legal.html#privacy">Privacy</a></li>
+              <li><a href="legal.html#terms">Terms</a></li>
+              <li><a href="legal.html#cookies">Cookies</a></li>
+              <li><a href="legal.html#accessibility">Accessibility</a></li>
+              <li><button class="footer-legal-link" style="background:none;border:none;cursor:pointer;padding:0;"
+                  data-cookie-manage>Cookie preferences</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-legal">© 2025 Rockmount AI Ltd. All rights reserved. Registered in England and Wales. AI
+            systems and outputs described on this site are illustrative. Past performance of AI automation is not
+            indicative of future results.</div>
+          <div class="footer-legal-links">
+            <a href="legal.html#privacy" class="footer-legal-link">Privacy</a>
+            <a href="legal.html#terms" class="footer-legal-link">Terms</a>
+            <a href="legal.html#accessibility" class="footer-legal-link">Accessibility</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </footer>
+
+  <!-- MODALS -->
+  <div class="modal-backdrop" id="modal-search" role="dialog" aria-modal="true" aria-label="Search" aria-hidden="true">
+    <div class="modal search-dialog">
+      <div class="modal-header">
+        <div class="modal-title">Search</div>
+        <div style="display:flex;align-items:center;gap:var(--sp-3);">
+          <kbd
+            style="font-size:10px;padding:2px 6px;background:rgba(255,255,255,0.07);border:1px solid var(--color-border);border-radius:4px;font-family:var(--font-mono);color:var(--color-text-tertiary);">ESC</kbd>
+          <button class="modal-close" data-modal-close aria-label="Close search">
+            <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="search-input-wrap">
+        <svg class="search-icon-abs" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5"
+          fill="none">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="search" id="search-field" class="search-field" placeholder="Search solutions, insights…"
+          aria-label="Search" />
+      </div>
+      <div
+        style="padding:var(--sp-2) var(--sp-6) 0; font-size:var(--fs-xs); color:var(--color-text-tertiary); display:flex; gap:var(--sp-2); align-items:center;">
+        <span><kbd
+            style="font-family:var(--font-mono);background:var(--color-surface);border:1px solid var(--color-border);padding:0 4px;border-radius:2px;">↓</kbd>
+          <kbd
+            style="font-family:var(--font-mono);background:var(--color-surface);border:1px solid var(--color-border);padding:0 4px;border-radius:2px;">↑</kbd>
+          to navigate</span>
+        <span><kbd
+            style="font-family:var(--font-mono);background:var(--color-surface);border:1px solid var(--color-border);padding:0 4px;border-radius:2px;">↵</kbd>
+          to select</span>
+      </div>
+      <div style="padding:var(--sp-4) var(--sp-6);border-top:1px solid var(--color-border);">
+        <div
+          style="font-size:var(--fs-xs);color:var(--color-text-tertiary);margin-bottom:var(--sp-3);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:var(--ls-wider);">
+          Quick links</div>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);">
+          <a href="solutions.html#audits" class="tag">AI Audits</a>
+          <a href="solutions.html#automation" class="tag">Automation</a>
+          <a href="insights.html?filter=governance" class="tag">Governance</a>
+          <a href="contact.html" class="tag">Book consultation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-region" role="dialog" aria-modal="true" aria-label="Select region"
+    aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Select your region</div>
+        <button class="modal-close" data-modal-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div class="modal-body" style="display:flex;flex-direction:column;gap:var(--sp-2);">
+        <button class="btn btn-secondary" style="justify-content:flex-start;gap:var(--sp-3);"
+          onclick="window.RM?.closeModal(document.getElementById('modal-region'))">🌐 Global (English)</button>
+        <button class="btn btn-secondary" style="justify-content:flex-start;gap:var(--sp-3);">🇬🇧 United
+          Kingdom</button>
+        <button class="btn btn-secondary" style="justify-content:flex-start;gap:var(--sp-3);">🇺🇸 United
+          States</button>
+        <button class="btn btn-secondary" style="justify-content:flex-start;gap:var(--sp-3);">🇩🇪 Deutschland</button>
+        <button class="btn btn-secondary" style="justify-content:flex-start;gap:var(--sp-3);">🇸🇬 Singapore</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-cookie" role="dialog" aria-modal="true" aria-label="Cookie preferences"
+    aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Cookie Preferences</div>
+        <button class="modal-close" data-modal-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div class="modal-body" style="display:flex;flex-direction:column;gap:var(--sp-5);">
+        <label class="form-checkbox"><input type="checkbox" checked disabled />
+          <div>
+            <div style="font-weight:600;font-size:var(--fs-sm);">Strictly Necessary</div>
+            <div style="font-size:var(--fs-xs);color:var(--color-text-secondary);">Required for basic site
+              functionality. Cannot be disabled.</div>
+          </div>
+        </label>
+        <label class="form-checkbox"><input type="checkbox" id="pref-analytics" checked />
+          <div>
+            <div style="font-weight:600;font-size:var(--fs-sm);">Analytics</div>
+            <div style="font-size:var(--fs-xs);color:var(--color-text-secondary);">Anonymous usage data to improve our
+              site and identify errors.</div>
+          </div>
+        </label>
+        <label class="form-checkbox"><input type="checkbox" id="pref-marketing" />
+          <div>
+            <div style="font-weight:600;font-size:var(--fs-sm);">Marketing</div>
+            <div style="font-size:var(--fs-xs);color:var(--color-text-secondary);">Helps us measure the effectiveness of
+              outreach and campaigns.</div>
+          </div>
+        </label>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; width:100%;">
+        <button class="btn btn-secondary" data-cookie-reject style="margin-right:auto;">Reject optional</button>
+        <button class="btn btn-primary" data-cookie-save>Save preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-external" role="dialog" aria-modal="true"
+    aria-label="You are leaving Rockmount AI" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Leaving Rockmount AI</div>
+        <button class="modal-close" data-modal-close aria-label="Cancel"><svg width="16" height="16" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:var(--fs-sm);color:var(--color-text-secondary);">You are leaving Rockmount AI and proceeding
+          to <span id="external-domain" style="font-weight:600;color:var(--color-text);">an external site</span>.</p>
+        <p style="font-size:var(--fs-xs);color:var(--color-text-tertiary);margin-top:var(--sp-2);">We are not
+          responsible for the content or privacy practices of external sites.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Go back</button>
+        <button class="btn btn-primary" id="external-confirm">Continue <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" role="complementary" aria-label="Cookie consent">
+    <p>We use cookies to improve your experience. See our <a href="legal.html#cookies" class="link-underline">Cookie
+        Notice</a> for details.</p>
+    <div class="cookie-actions">
+      <button class="btn btn-secondary btn-sm" data-cookie-manage>Manage</button>
+      <button class="btn btn-primary btn-sm" data-cookie-accept>Accept all</button>
+    </div>
+  </div>
+
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/globe.js"></script>
+  <script>
+    // Scroll progress bar
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      var ticking = false;
+      function update() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0).toFixed(2) + '%';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+    })();
+  </script>
+  <script src="js/bg-canvas.js" defer></script>
+</body>
+
+</html>

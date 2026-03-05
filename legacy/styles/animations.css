@@ -1,0 +1,183 @@
+/* ============================================================
+   ROCKMOUNT AI — Animations CSS
+   Scroll reveals, stat figures, card interactions
+   Enterprise-grade: no shimmer, clip-path, or decorative motion
+   ============================================================ */
+
+/* ─── SCROLL REVEAL SYSTEM ─── */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(var(--motion-reveal));
+    transition:
+        opacity var(--dur-reveal) var(--ease-enter),
+        transform var(--dur-reveal) var(--ease-enter);
+    will-change: opacity, transform;
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger children using CSS custom property set by JS */
+[data-stagger]>* {
+    opacity: 0;
+    transform: translateY(var(--motion-reveal));
+    transition:
+        opacity var(--dur-reveal) var(--ease-enter),
+        transform var(--dur-reveal) var(--ease-enter);
+    transition-delay: calc(var(--stagger-index, 0) * 60ms);
+}
+
+[data-stagger].revealed>* {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── HERO ENTRANCE (calm opacity + translate) ─── */
+.hero-wipe {
+    opacity: 0;
+    transform: translateY(var(--motion-reveal));
+    animation: hero-calm-in var(--dur-reveal) var(--ease-enter) both;
+}
+
+@keyframes hero-calm-in {
+    from {
+        opacity: 0;
+        transform: translateY(var(--motion-reveal));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-wipe:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.hero-wipe:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.hero-wipe:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+.hero-wipe:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+.hero-wipe:nth-child(5) {
+    animation-delay: 0.33s;
+}
+
+/* ─── STAT NUMBER ─── */
+.stat-figure {
+    color: var(--color-white);
+}
+
+/* ─── SECTION LABEL FADE-UP ─── */
+@keyframes label-fade {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-label {
+    animation: label-fade var(--dur-reveal) var(--ease-enter) forwards;
+}
+
+/* ─── SCROLL PROGRESS BAR ─── */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--color-accent);
+    z-index: 9999;
+    pointer-events: none;
+    transition: width 0.1s linear;
+}
+
+/* ─── OFFERING CARD HOVER ─── */
+.offering-card {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform var(--dur-ui) var(--ease-ui),
+        box-shadow var(--dur-ui) var(--ease-ui),
+        border-color var(--dur-ui) var(--ease-ui);
+}
+
+/* ─── ROTATING TEXT ─── */
+@keyframes text-rotate-in {
+    from {
+        opacity: 0;
+        transform: translateY(40%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes text-rotate-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+}
+
+.rotate-word-enter {
+    animation: text-rotate-in var(--dur-reveal) var(--ease-enter) both;
+}
+
+.rotate-word-exit {
+    animation: text-rotate-out var(--dur-reveal) var(--ease-exit) both;
+}
+
+/* ─── PREFERS-REDUCED-MOTION OVERRIDES ─── */
+@media (prefers-reduced-motion: reduce) {
+
+    [data-reveal],
+    [data-stagger]>* {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .hero-wipe,
+    .animate-label {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    .offering-card {
+        transition: none !important;
+    }
+
+    #scroll-progress {
+        transition: none !important;
+    }
+
+    .rotate-word-enter,
+    .rotate-word-exit {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}

@@ -1,0 +1,448 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Rockmount AI Newsroom — Latest press releases, media coverage, and company announcements." />
+    <title>Newsroom — Rockmount AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/animations.css" />
+    <link rel="stylesheet" href="styles/pages.css" />
+</head>
+
+<body>
+  <canvas id="bg-canvas" aria-hidden="true" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>`n  <div id="scroll-progress" aria-hidden="true"></div>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo" aria-label="Rockmount AI">
+                <img src="assets/logo_transparent.png" alt="Rockmount AI" width="180" height="40" style="height:40px; width:auto; object-fit:contain;">
+            </a>
+
+      <nav class="primary-nav" role="navigation" aria-label="Primary navigation">
+        <!-- Solutions mega -->
+        <div class="nav-item" data-mega>
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Solutions
+            <svg class="nav-link-caret" viewBox="0 0 10 10">
+              <polyline points="1 3 5 7 9 3" />
+            </svg>
+          </button>
+          <div class="mega-menu" role="region" aria-label="Solutions menu">
+            <div class="mega-column mega-column--grid">
+              <div class="mega-column-title mega-column-title--span">Capabilities</div>
+              <a href="solutions.html#automation" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Automation Systems</div>
+                  <div class="mega-link-desc">End-to-end workflow automation that ships.</div>
+                </div>
+              </a>
+              <a href="solutions.html#ai-apps" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M9 9h6M9 12h6M9 15h4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI App Creation</div>
+                  <div class="mega-link-desc">Internal and customer-facing AI products.</div>
+                </div>
+              </a>
+              <a href="solutions.html#integration" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Backend Integration</div>
+                  <div class="mega-link-desc">APIs, data pipelines, orchestration layers.</div>
+                </div>
+              </a>
+              <a href="solutions.html#audits" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M9 11l3 3L22 4" />
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI Audits</div>
+                  <div class="mega-link-desc">Security, privacy, bias, and reliability.</div>
+                </div>
+              </a>
+              <a href="solutions.html#monitoring" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Monitoring & Gov</div>
+                  <div class="mega-link-desc">Model observability and policy enforcement.</div>
+                </div>
+              </a>
+              <a href="solutions.html#enablement" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Enablement</div>
+                  <div class="mega-link-desc">Playbooks, training, and rollout support.</div>
+                </div>
+              </a>
+            </div>
+            <div class="mega-featured">
+              <div class="mega-column-title mega-column-title--flush">Featured Insight</div>
+              <div class="mega-featured-img">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
+                  alt="Abstract data lines" loading="lazy">
+              </div>
+              <div class="mega-featured-title">Governance in the loop</div>
+              <div class="mega-featured-desc">How to maintain audit trails without slowing down continuous deployment
+                models.</div>
+              <a href="insight-detail.html" class="link-arrow mt-auto">Read playbook <span class="arrow">→</span></a>
+            </div>
+            <div class="mega-footer">
+              <span class="mega-footer-label">Engineering-grade delivery</span>
+              <a href="solutions.html" class="link-arrow">View all solutions <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights mega -->
+        <div class="nav-item" data-mega>
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Insights
+            <svg class="nav-link-caret" viewBox="0 0 10 10">
+              <polyline points="1 3 5 7 9 3" />
+            </svg>
+          </button>
+          <div class="mega-menu" role="region" aria-label="Insights menu">
+            <div class="mega-column mega-column--grid">
+              <div class="mega-column-title mega-column-title--span">Topics</div>
+              <a href="insights.html?filter=automation" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Automation</div>
+                  <div class="mega-link-desc">Workflow design, LLM ops.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=audits" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M9 11l3 3L22 4" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">AI Audits</div>
+                  <div class="mega-link-desc">Bias, safety, and compliance.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=governance" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Governance</div>
+                  <div class="mega-link-desc">Model risk management.</div>
+                </div>
+              </a>
+              <a href="insights.html?filter=deployment" class="mega-item">
+                <div class="mega-icon"><svg viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg></div>
+                <div>
+                  <div class="mega-link-title">Deployment</div>
+                  <div class="mega-link-desc">SLAs and production best practices.</div>
+                </div>
+              </a>
+            </div>
+            <div class="mega-featured">
+              <div class="mega-column-title mega-column-title--flush">Latest Article</div>
+              <div class="mega-featured-img">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400&auto=format&fit=crop"
+                  alt="Abstract architectural structural lines" loading="lazy">
+              </div>
+              <div class="mega-featured-title">Securing Enterprise LLMs</div>
+              <div class="mega-featured-desc">A deep dive into mitigating prompt injection and exfiltration risks in
+                production.</div>
+              <a href="insight-detail.html" class="link-arrow mt-auto">Read article <span class="arrow">→</span></a>
+            </div>
+            <div class="mega-footer">
+              <span class="mega-footer-label">New insight every week</span>
+              <a href="insights.html" class="link-arrow">Browse library <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item"><a href="company.html" class="nav-link">Our Company</a></div>
+        <div class="nav-item"><a href="newsroom.html" class="nav-link">Newsroom</a></div>
+        <div class="nav-item"><a href="careers.html" class="nav-link">Careers</a></div>
+      </nav>
+            <div class="nav-utils"><button class="region-btn">Global / EN</button><button class="nav-icon-btn"
+                    id="search-open" aria-label="Search"><svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg></button><a href="contact.html" class="btn btn-primary nav-cta">Book a Consultation</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false"
+                aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <!-- MOBILE NAV -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="solutions.html" class="mobile-nav-link">Solutions</a>
+      <a href="insights.html" class="mobile-nav-link">Insights</a>
+      <a href="company.html" class="mobile-nav-link">Our Company</a>
+      <a href="newsroom.html" class="mobile-nav-link">Newsroom</a>
+      <a href="careers.html" class="mobile-nav-link">Careers</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    <div class="mobile-nav-ctas">
+      <a href="contact.html" class="btn btn-primary btn-xl">Book a Consultation</a>
+      <a href="solutions.html" class="btn btn-secondary btn-xl">Explore Solutions</a>
+    </div>
+  </nav>
+
+    <main id="main" class="main-content">
+        <div class="page-hero">
+            <div class="container">
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span
+                        class="breadcrumbs-sep" aria-hidden="true">›</span><span>Newsroom</span></nav>
+                <div class="eyebrow" style="margin-top:var(--sp-7);">Press & announcements</div>
+                <h1 data-reveal>Newsroom</h1>
+            </div>
+        </div>
+
+        <section class="section-padding" aria-label="Press releases and media">
+            <div class="container">
+                <div class="news-section">
+                    <div>
+                        <div
+                            style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-6);">
+                            <h2 style="font-size:var(--fs-xl);font-weight:var(--fw-bold);">Press releases</h2>
+                            <div class="filter-bar" style="margin-bottom:0;">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="funding">Funding</button>
+                                <button class="filter-btn" data-filter="product">Product</button>
+                                <button class="filter-btn" data-filter="partnership">Partnership</button>
+                            </div>
+                        </div>
+                        <div data-filter-grid>
+                            <div class="card-news" data-category="funding">
+                                <div class="news-date">02 Jun 2025</div>
+                                <div>
+                                    <div class="news-title">Rockmount AI Closes $28M Series A to Accelerate Enterprise
+                                        AI Audit Platform</div>
+                                    <p
+                                        style="font-size:var(--fs-sm);color:var(--color-text-secondary);margin-top:var(--sp-2);margin-bottom:var(--sp-2);">
+                                        Led by Accel Partners with participation from LocalGlobe and existing angel
+                                        investors. Funding to expand audit team, engineering capacity, and open new
+                                        offices in Toronto and Bangalore.</p>
+                                    <a href="#" class="btn btn-tertiary text-xs">Read full release <span
+                                            class="arrow">→</span></a>
+                                </div>
+                            </div>
+                            <div class="card-news" data-category="product">
+                                <div class="news-date">14 May 2025</div>
+                                <div>
+                                    <div class="news-title">Rockmount AI Named "AI Governance Pioneer" by Enterprise
+                                        Tech 50</div>
+                                    <p
+                                        style="font-size:var(--fs-sm);color:var(--color-text-secondary);margin-top:var(--sp-2);margin-bottom:var(--sp-2);">
+                                        Recognised alongside two other companies for our approach to embedding
+                                        governance into AI delivery from the first sprint.</p>
+                                    <a href="#" class="btn btn-tertiary text-xs">Read full release <span
+                                            class="arrow">→</span></a>
+                                </div>
+                            </div>
+                            <div class="card-news" data-category="partnership">
+                                <div class="news-date">28 Mar 2025</div>
+                                <div>
+                                    <div class="news-title">Rockmount AI Partners with ISO/IEC JTC 1 Working Group on AI
+                                        Trustworthiness</div>
+                                    <p
+                                        style="font-size:var(--fs-sm);color:var(--color-text-secondary);margin-top:var(--sp-2);margin-bottom:var(--sp-2);">
+                                        Contributing our bias audit methodology and model evaluation frameworks to
+                                        upcoming ISO/IEC 42001 implementation guidance.</p>
+                                    <a href="#" class="btn btn-tertiary text-xs">Read full release <span
+                                            class="arrow">→</span></a>
+                                </div>
+                            </div>
+                            <div class="card-news" data-category="product">
+                                <div class="news-date">10 Feb 2025</div>
+                                <div>
+                                    <div class="news-title">Rockmount AI Launches Model Governance Dashboard — Available
+                                        to All Clients</div>
+                                    <p
+                                        style="font-size:var(--fs-sm);color:var(--color-text-secondary);margin-top:var(--sp-2);margin-bottom:var(--sp-2);">
+                                        The dashboard provides real-time model performance monitoring, drift alerts, and
+                                        policy compliance tracking in a single interface.</p>
+                                    <a href="#" class="btn btn-tertiary text-xs">Read full release <span
+                                            class="arrow">→</span></a>
+                                </div>
+                            </div>
+                            <div class="card-news" data-category="partnership">
+                                <div class="news-date">18 Jan 2025</div>
+                                <div>
+                                    <div class="news-title">Rockmount AI and Databricks Sign Strategic Partnership for
+                                        Enterprise AI Delivery</div>
+                                    <p
+                                        style="font-size:var(--fs-sm);color:var(--color-text-secondary);margin-top:var(--sp-2);margin-bottom:var(--sp-2);">
+                                        Combining Rockmount AI's governance and delivery expertise with the Databricks
+                                        Data Intelligence Platform for joint enterprise engagements.</p>
+                                    <a href="#" class="btn btn-tertiary text-xs">Read full release <span
+                                            class="arrow">→</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MEDIA CONTACTS -->
+                    <div>
+                        <div class="media-contact">
+                            <h2 style="font-size:var(--fs-lg);font-weight:var(--fw-bold);margin-bottom:var(--sp-5);">
+                                Media contacts</h2>
+                            <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+                                <div>
+                                    <div style="font-weight:var(--fw-semibold);font-size:var(--fs-sm);">Press enquiries
+                                    </div>
+                                    <div
+                                        style="font-size:var(--fs-xs);color:var(--color-text-secondary);margin-top:var(--sp-1);">
+                                        James Okonkwo<br />Head of Communications</div>
+                                    <a href="mailto:press@rockmountai.com" class="link-underline"
+                                        style="font-size:var(--fs-xs);display:block;margin-top:var(--sp-2);">press@rockmountai.com</a>
+                                </div>
+                                <div>
+                                    <div style="font-weight:var(--fw-semibold);font-size:var(--fs-sm);">Analyst
+                                        relations</div>
+                                    <div
+                                        style="font-size:var(--fs-xs);color:var(--color-text-secondary);margin-top:var(--sp-1);">
+                                        Elena Whitmore<br />General Counsel</div>
+                                    <a href="mailto:ar@rockmountai.com" class="link-underline"
+                                        style="font-size:var(--fs-xs);display:block;margin-top:var(--sp-2);">ar@rockmountai.com</a>
+                                </div>
+                                <hr class="divider" style="margin:0;" />
+                                <div>
+                                    <div
+                                        style="font-size:var(--fs-xs);color:var(--color-text-tertiary);margin-bottom:var(--sp-3);">
+                                        Download press kit for logos, brand guidelines, and leadership photography.
+                                    </div>
+                                    <a href="#" class="btn btn-secondary btn-sm"
+                                        style="width:100%;justify-content:center;">Download press kit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+    <nav aria-label="Footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="index.html" class="site-logo" aria-label="Rockmount AI">
+                <img src="assets/logo_transparent.png" alt="Rockmount AI" width="180" height="40" style="height:40px; width:auto; object-fit:contain;">
+            </a>
+                    <p class="footer-tagline">Engineering-grade AI automation.</p>
+                </div>
+                <div>
+                    <div class="footer-col-title">Company</div>
+                    <ul class="footer-links">
+                        <li><a href="company.html">About</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Legal</div>
+                    <ul class="footer-links">
+                        <li><a href="legal.html">All legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">© 2025 Rockmount AI Ltd. All rights reserved.</div>
+            </div>
+        </div>
+    </nav>
+
+    </footer>
+    <div class="modal-backdrop" id="modal-search" role="dialog" aria-modal="true" aria-label="Search"
+        aria-hidden="true">
+        <div class="modal search-dialog">
+            <div class="modal-header">
+                <div class="modal-title">Search</div><button class="modal-close" data-modal-close
+                    aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2" fill="none">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+            <div class="search-input-wrap"><svg class="search-icon-abs" viewBox="0 0 24 24" width="18" height="18"
+                    stroke="currentColor" stroke-width="1.5" fill="none">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg><input type="search" id="search-field" class="search-field" placeholder="Search…"
+                    aria-label="Search" /></div>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="modal-external" role="dialog" aria-modal="true" aria-label="Leaving"
+        aria-hidden="true">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Leaving Rockmount AI</div><button class="modal-close" data-modal-close
+                    aria-label="Cancel"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2" fill="none">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:var(--fs-sm);color:var(--color-text-secondary);">You're about to leave
+                    rockmountai.com.</p>
+            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>Go back</button><button
+                    class="btn btn-primary" id="external-confirm">Continue →</button></div>
+        </div>
+    </div>
+    <div class="cookie-banner" role="complementary">
+        <p>We use cookies. <a href="legal.html#cookies" class="link-underline">Cookie Notice</a>.</p>
+        <div class="cookie-actions"><button class="btn btn-secondary btn-sm" data-cookie-manage>Manage</button><button
+                class="btn btn-primary btn-sm" data-cookie-accept>Accept all</button></div>
+    </div>
+    <script src="js/nav.js"></script>
+    <script src="js/animations.js"></script>
+
+  <script>
+    (function () {
+      var bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      var ticking = false;
+      function update() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0).toFixed(2) + '%';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+    })();
+  </script>
+  <script src="js/bg-canvas.js" defer></script>
+</body>
+
+</html>
